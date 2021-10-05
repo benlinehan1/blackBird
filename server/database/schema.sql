@@ -33,3 +33,9 @@ create table section (
   title text,
   content text
 );
+
+create table confirmation (
+  id serial primary key,
+  doctor_id int,
+  date timestamp
+);

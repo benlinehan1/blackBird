@@ -17,11 +17,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/landing", (req, res) => {
-	res.sendFile(path.join(__dirname, "../client/landing.html"));
+	res.sendFile(path.join(__dirname, "../client/views/landing.html"));
 });
 
 app.get("/home", (req, res) => {
-	res.sendFile(path.join(__dirname, "../client/home.html"));
+	res.sendFile(path.join(__dirname, "../client/views/home.html"));
 });
 
 /* --- API ROUTES --- */

@@ -11,3 +11,8 @@ function formateDate(date) {
 		timeZone: "AEDT",
 	});
 }
+
+module.exports = {
+	newISO,
+	formateDate,
+};

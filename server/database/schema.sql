@@ -37,5 +37,6 @@ create table section (
 create table confirmation (
   id serial primary key,
   doctor_id int,
-  date timestamp
+  date timestamp,
+  confirmation_code text
 );

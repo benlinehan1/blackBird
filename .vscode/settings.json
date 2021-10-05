@@ -1,0 +1,18 @@
+{
+	"files.exclude": {
+		"**/.git": true,
+		"**/node_modules": true,
+		"**/.DS_Store": true,
+		"**/package-lock.json": true,
+		"**/.vscode": false,
+		"**/.prettierrc": true
+	},
+	"files.associations": {
+		"*.cmp": "html"
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.formatOnSave": true
+}

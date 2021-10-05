@@ -1,0 +1,28 @@
+{
+	"create get route": {
+		"prefix": "app.get",
+		"body": [
+			"app.get(\"/api/${1:}\", (req, res) => {",
+			"  let sql = '${2:}'",
+			"  db.query(sql, [${3:}], (err, dbRes) => {",
+			"    ${4:}",
+			"  });"
+		],
+		"description": "create get route"
+	},
+
+	"create database query": {
+		"prefix": "db.query",
+		"body": [
+			"db.query('${1:}',${3:}).then(dbRes => {",
+			"    ${4:}",
+			"  db.end()",
+			"})",
+			".catch(err => {",
+			"  ${5:}",
+			"  console.log(err.message)",
+			"})"
+		],
+		"description": "create database query"
+	}
+}

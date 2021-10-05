@@ -1,7 +1,9 @@
-const test = require("./server/models/patients_models.js");
+const test = require("./server/models/doctor_models.js");
 
 let id = 1;
-let name = "Nic";
+let fullName = "Nic";
+let type = "psic";
+let credential = 1234;
 
-test.create(id, name);
-console.log(test.getAll());
+test.doctorCreate(id, fullName, type, credential);
+console.log(test.doctorGetAllById(1));

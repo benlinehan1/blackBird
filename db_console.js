@@ -1,7 +1,7 @@
 const test = require("./server/models/patients_models.js");
 
 let id = 1;
-let pt = 2;
+let name = "nick";
 let content = "Melhorou";
+test.patientCreate(id, name);
 console.log(test.patientsGetAll());
-test.console.log(test.commentsGetAllByConsultation(2));

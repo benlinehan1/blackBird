@@ -3,6 +3,16 @@ const serverLog = require("./lib/serverLog");
 const statusCodes = require("./lib/statusCodes");
 require("dotenv").config({ path: `${__dirname}/dev.env` });
 const signUpHelp = require("./lib/auth/signUp");
+const authUsersHelp = require("./lib/auth/authUsers");
+
+//Import models
+const commentsModel = require("./models/comments_models");
+const confirmationModel = require("./models/confirmation_models");
+const consultationModel = require("./models/consultation_models");
+const doctorModel = require("./models/doctor_models");
+const patientsModel = require("./models/patients_models");
+const relationshipsModel = require("./models/relationships_models");
+const sectionModel = require("./models/section_models");
 
 //Server config
 const path = require("path");
@@ -29,9 +39,14 @@ app.get("/", (req, res) => {
 	//check if logged in
 	console.log(req.oidc.isAuthenticated());
 	if (req.oidc.isAuthenticated()) {
+		console.log(req.oidc.user);
 		let userId = req.oidc.user.sub;
 		signUpHelp.isFirstSignUp(userId).then((res) => {
-			console.log(res);
+			if (res) {
+				authUsersHelp.getMetaData(userId).then((res) => {
+					console.log(res);
+				});
+			}
 		});
 		res.redirect("/home");
 	} else {

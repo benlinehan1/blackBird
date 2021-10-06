@@ -3,11 +3,11 @@ const path = require("path");
 var __dirname = path.resolve();
 require("dotenv").config({ path: `${__dirname}/dev.env` });
 
-function isFirstSignUp(userId) {
+function getMetaData(userId) {
 	console.log(`User id: ${userId}`);
 	var config = {
 		method: "get",
-		url: `https://dev-o2a5ilyv.us.auth0.com/api/v2/users/${userId}?fields=logins_count&include_fields=true`,
+		url: `https://dev-o2a5ilyv.us.auth0.com/api/v2/users/${userId}?include_fields=true&fields=user_metadata`,
 		headers: {
 			Authorization: `Bearer ${process.env.AUTH_BEARER_TOKEN}`,
 		},
@@ -15,15 +15,13 @@ function isFirstSignUp(userId) {
 
 	return axios(config)
 		.then(function (response) {
-			let amount = response.data.logins_count;
-			return true; //should only be here for testing
-			//return parseInt(amount) === 1;
+			return response.data.user_metadata;
 		})
 		.catch(function (error) {
-			console.log("no");
+			console.log("nah fams");
 		});
 }
 
 module.exports = {
-	isFirstSignUp,
+	getMetaData,
 };

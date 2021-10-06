@@ -50,6 +50,10 @@ function remove(id) {
 		});
 }
 
+function getStatus(id) {
+	let sql = `SELECT pending from relationships where id = $1`;
+}
+
 function getAllDoctorsOfPatients(doctor_id) {
 	let sql = `select doctors.* from relationships where doctor_id = $1 and pending = false join doctors on relationships.doctor_id = doctors.id`;
 

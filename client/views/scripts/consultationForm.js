@@ -10,4 +10,6 @@ component("ConsultationForm", { Class: "consultation-form" }).then((comp) => {
 	addConsultDiv.appendChild(comp);
 });
 
-docu;
+component("Section", { Class: "section" }).then((comp) => {
+	comp.appendChild(document.body);
+});

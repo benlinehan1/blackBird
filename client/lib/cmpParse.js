@@ -1,4 +1,4 @@
-component = (cmpFile, locals = {}) => {
+const component = (cmpFile, locals = {}) => {
 	let parentDiv = document.createElement("div");
 	return fetch("./components/" + cmpFile + ".cmp")
 		.then((response) => response.text())

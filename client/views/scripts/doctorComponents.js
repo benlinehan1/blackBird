@@ -1,13 +1,26 @@
 import component from "./../../lib/cmpParse.js";
+const consultationDiv = document.querySelector(".consultations_hp");
 
-var sidebarHp = document.querySelector(".sidebar_hp");
-
-component("HpView", { Label: "Select a patient:" }).then((comp) => {
-	sidebarHp.appendChild(comp);
+component("ConsultationLink", {}, 0).then((comp) => {
+	comp.classList.add("component");
+	comp.classList.add("consultation_link");
+	comp.classList.add("rounded");
+	consultationDiv.appendChild(comp);
+	return;
 });
 
-var consultationDiv = document.querySelector(".consultations_hp");
-
-component("HpBaseConsult", { Title: "Consultation", Date: "Placeholder" }).then((comp) => {
+component("ConsultationLink", {}, 1).then((comp) => {
+	comp.classList.add("component");
+	comp.classList.add("consultation_link");
+	comp.classList.add("rounded");
 	consultationDiv.appendChild(comp);
+	return;
+});
+
+component("ConsultationLink", {}, 3).then((comp) => {
+	comp.classList.add("component");
+	comp.classList.add("consultation_link");
+	comp.classList.add("rounded");
+	consultationDiv.appendChild(comp);
+	return;
 });

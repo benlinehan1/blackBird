@@ -84,5 +84,23 @@ app.get("/api/", (req, res) => {
 	res.json(statusCodes.success());
 });
 
+app.get("/api/relationships", (req, res) => {
+	relationships.all().then((dbRes) => {
+		res.json({ message: dbRes.rows }).catch((err) => {
+			res.json({ message: err.message });
+		});
+	});
+});
+
+app.post("/api/relationships", (req, res) => {
+	req.body;
+
+	relationship.create(req.body.patient_id, req.body.doctor_id).then((dbRes) => {
+		res.json({ message: "added", item: dbRes.rows[0] }).catch((err) => {
+			res.json({ message: err.message });
+		});
+	});
+});
+
 /* --- SERVER LISTEN --- */
 app.listen(port, (_) => serverLog.startup(port));

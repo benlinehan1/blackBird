@@ -19,7 +19,6 @@ body {
 }
 
 .consultation {
-	text-align: center;
 	margin: auto;
 	margin-top: 20px;
 	width: 800px;
@@ -27,7 +26,6 @@ body {
 }
 
 .consultation_link {
-	margin: 10px;
 	height: 200px;
 	width: 200px;
 }

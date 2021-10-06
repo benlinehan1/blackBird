@@ -1,4 +1,4 @@
-const component = (cmpFile, locals = {}, order) => {
+const component = (cmpFile, locals = {}, order = false) => {
 	let parentDiv = document.createElement("div");
 	return fetch("./components/" + cmpFile + ".cmp")
 		.then((response) => response.text())
@@ -16,7 +16,9 @@ const component = (cmpFile, locals = {}, order) => {
 				}
 			});
 			parentDiv.innerHTML = array.join("");
-			parentDiv.style.order = order.toString();
+			if (order !== false) {
+				parentDiv.style.order = order.toString();
+			}
 			return parentDiv;
 		});
 };

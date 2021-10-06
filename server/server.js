@@ -134,9 +134,23 @@ app.get("/api/doctors/:id", (req, res) => {
 	});
 });
 
-// ^ deletes relationship
+// ^ gets doctor by id
 
-// do patch later (pending needs to be done)
+app.get("/api/patients", (req, res) => {
+	patientsModel.patientsGetAll().then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+// ^ find all patients
+
+app.get("/api/patients/:id", (req, res) => {
+	patientsModel.patientsGetId(req.body.patient_id).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+// find patient by id ^
 
 /* --- SERVER LISTEN --- */
 app.listen(port, (_) => serverLog.startup(port));

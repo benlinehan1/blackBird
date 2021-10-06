@@ -26,6 +26,18 @@ app.get("/", (req, res) => {
 	res.send("Working");
 });
 
+app.get("/addconsultation", (req, res) => {
+	res.sendFile(path.join(__dirname, "../client/views/addconsultation.html"));
+});
+
+app.get("/patientview", (req, res) => {
+	res.sendFile(path.join(__dirname, "../client/views/patientview.html"));
+});
+
+app.get("/hpview", (req, res) => {
+	res.sendFile(path.join(__dirname, "../client/views/hpview.html"));
+});
+
 app.get("/landing", (req, res) => {
 	res.sendFile(path.join(__dirname, "../client/views/landing.html"));
 });

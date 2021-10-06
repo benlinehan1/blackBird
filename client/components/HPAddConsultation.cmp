@@ -2,6 +2,6 @@
 
 <input class="new_consultation_content" type="text" />
 
-<button class="new_consultation_submit">Submit</button>
+<button class="add_section">Add New Section</button>
 
-<button class="add_section"></button>
+<button class="new_consultation_submit">Submit</button>

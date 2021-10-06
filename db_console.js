@@ -10,9 +10,15 @@ const section = require("./server/models/section_models.js");
 // let doctorId = 2;
 // let code = 92112037;
 // let done = "doc";
-relationship.create("1", "2").catch((err) => {
-	console.log(err);
-});
-relationship.all();
+// relationship.create("1", "2").catch((err) => {
+// 	console.log(err);
+// });
+// relationship.all();
 
 // section.sectionCreate(2, "Life must go on", "You're surely fine");
+
+doctor.doctorCreate("2", "Sarah Leah", "Psychiatrist", 2);
+
+patient.patientCreate("2", "Nic Juncal");
+
+// relationship.create("2", "2");

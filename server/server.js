@@ -27,6 +27,7 @@ app.use(
 		baseURL: process.env.BASE_URL,
 		clientID: process.env.CLIENT_ID,
 		secret: process.env.SECRET,
+		authRequired: false,
 	})
 );
 
@@ -87,8 +88,8 @@ app.get("/api/", (req, res) => {
 });
 
 app.get("/api/relationships", (req, res) => {
-	relationships.all().then((dbRes) => {
-		res.json({ message: dbRes.rows }).catch((err) => {
+	relationshipsModel.all().then((dbRes) => {
+		res.json({ message: dbRes }).catch((err) => {
 			res.json({ message: err.message });
 		});
 	});
@@ -97,11 +98,23 @@ app.get("/api/relationships", (req, res) => {
 app.post("/api/relationships", (req, res) => {
 	req.body;
 
-	relationship.create(req.body.patient_id, req.body.doctor_id).then((dbRes) => {
-		res.json({ message: "added", item: dbRes.rows[0] }).catch((err) => {
-			res.json({ message: err.message });
-		});
+	console.log(req.body);
+
+	relationshipsModel.create(req.body.patient_id, req.body.doctor_id).then((dbRes) => {
+		console.log(dbRes);
+		res.json({ message: "added", relationship: dbRes });
 	});
+});
+
+app.delete("/api/relationships/:id", (req, res) => {
+	relationshipsModel
+		.remove(req.params.id)
+		.then((dbRes) => {
+			res.json("confirmed delete");
+		})
+		.catch((err) => {
+			res.status(500).json("error occurred");
+		});
 });
 
 /* --- SERVER LISTEN --- */

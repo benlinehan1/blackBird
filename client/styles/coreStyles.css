@@ -13,7 +13,6 @@ body {
 }
 
 .component {
-	margin-top: 20px;
 	border: 2px solid #6f6f6f;
 	background-color: #f1f1f1;
 }
@@ -25,7 +24,25 @@ body {
 	height: max-content;
 }
 
+.consultations_hp {
+	flex: 1 1 0;
+	transition: 1s;
+	height: fit-content;
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	text-align: center;
+}
+
+.consultations_holder {
+	background-color: rgb(238, 238, 169);
+}
+
 .consultation_link {
+	margin: 5px;
+	margin-top: 0px;
 	height: 200px;
 	width: 200px;
 }

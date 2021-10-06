@@ -41,9 +41,13 @@ function confirm(id) {
 function remove(id) {
 	let sql = `delete from relationships where id = $1;`;
 
-	return dbQuery(sql, [id]).then((dbRes) => {
-		return dbRes.rows;
-	});
+	return dbQuery(sql, [id])
+		.then((dbRes) => {
+			return dbRes.rows;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 }
 
 module.exports = {

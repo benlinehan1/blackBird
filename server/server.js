@@ -61,6 +61,10 @@ app.get("/", (req, res) => {
 	}
 });
 
+app.get("/sillylittletest", (req, res) => {
+	res.sendFile(path.join(__dirname, "../client/views/sillylittletest.html"));
+});
+
 app.get("/addconsultation", (req, res) => {
 	res.sendFile(path.join(__dirname, "../client/views/addconsultation.html"));
 });
@@ -151,6 +155,14 @@ app.get("/api/patients/:id", (req, res) => {
 });
 
 // find patient by id ^
+
+app.get("/api/consultations/:id", (req, res) => {
+	consultationModel.getWithSections(req.params.id).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+// app.post("/api/consultations");
 
 /* --- SERVER LISTEN --- */
 app.listen(port, (_) => serverLog.startup(port));

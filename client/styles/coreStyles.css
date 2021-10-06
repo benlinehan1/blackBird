@@ -1,0 +1,37 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: aliceblue;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+}
+
+.header {
+	background-color: rgb(134, 230, 217);
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.component {
+	margin-top: 20px;
+	border: 2px solid #6f6f6f;
+	background-color: #f1f1f1;
+}
+
+.consultation {
+	text-align: center;
+	margin: auto;
+	margin-top: 20px;
+	width: 800px;
+	height: max-content;
+}
+
+.consultation_link {
+	margin: 10px;
+	height: 200px;
+	width: 200px;
+}
+
+.rounded {
+	border-radius: 25px;
+}

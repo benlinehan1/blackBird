@@ -1,0 +1,17 @@
+.main_container {
+	display: grid;
+	grid-template-columns: 1fr 6fr;
+}
+
+.sidebar_hp {
+	background-color: rgb(168, 168, 168);
+	padding-left: 20px;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+.consultations_hp {
+	display: flex;
+	flex-direction: row;
+	background-color: rgb(229, 252, 168);
+}

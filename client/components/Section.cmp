@@ -1,1 +1,2 @@
-<input class="title" type="text" /> <input class="section" type="textarea" />
+<input class="title" type="text" /> 
+<textarea class="section" type="text" />

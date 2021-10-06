@@ -93,11 +93,11 @@ app.get("/api/", (req, res) => {
 
 app.get("/api/relationships", (req, res) => {
 	relationshipsModel.all().then((dbRes) => {
-		res.json({ message: dbRes }).catch((err) => {
-			res.json({ message: err.message });
-		});
+		res.json({ message: dbRes });
 	});
 });
+
+// ^ requests all relationships
 
 app.post("/api/relationships", (req, res) => {
 	req.body;
@@ -110,16 +110,33 @@ app.post("/api/relationships", (req, res) => {
 	});
 });
 
+//^ adds relationship
+
 app.delete("/api/relationships/:id", (req, res) => {
-	relationshipsModel
-		.remove(req.params.id)
-		.then((dbRes) => {
-			res.json("confirmed delete");
-		})
-		.catch((err) => {
-			res.status(500).json("error occurred");
-		});
+	relationshipsModel.remove(req.params.id).then((dbRes) => {
+		res.json("confirmed delete");
+	});
 });
+
+// DOCTOR MODELS:
+
+app.get("/api/doctors", (req, res) => {
+	doctorModel.doctorGetAll().then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+// return * doctors ^
+
+app.get("/api/doctors/:id", (req, res) => {
+	doctorModel.doctorGetAllById(req.body.doctor_id).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+// ^ deletes relationship
+
+// do patch later (pending needs to be done)
 
 /* --- SERVER LISTEN --- */
 app.listen(port, (_) => serverLog.startup(port));

@@ -4,6 +4,7 @@ const statusCodes = require("./lib/statusCodes");
 require("dotenv").config({ path: `${__dirname}/dev.env` });
 const signUpHelp = require("./lib/auth/signUp");
 const authUsersHelp = require("./lib/auth/authUsers");
+const { auth } = require("express-openid-connect");
 
 //Import models
 const commentsModel = require("./models/comments_models");
@@ -19,7 +20,6 @@ const path = require("path");
 const app = express();
 const port = serverLog.port; // Default port is 3000
 
-const { auth } = require("express-openid-connect");
 app.use(
 	auth({
 		auth0Logout: true,
@@ -46,6 +46,10 @@ app.get("/", (req, res) => {
 				authUsersHelp.getMetaData(userId).then((res) => {
 					if (res.role === "patient") {
 						patientsModel.patientsCreate(req.oidc.user.sub, res.name);
+						res.redirect("/pateintview");
+					} else if (res.role === "doctor") {
+						doctorsModel.doctorCreate(req.oidc.user.sub, res.name);
+						res.redirect("hpview");
 					}
 				});
 			}

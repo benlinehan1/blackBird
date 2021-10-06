@@ -29,15 +29,18 @@ function deleteSingle(consultationId) {
 	});
 }
 
-function getWithSections(id) {
+function getSingle(id) {
 	let getModelSql = "SELECT * from consultation WHERE id = $1";
-	let getSectionsSql =
-		"SELECT * from section INNER JOIN comments ON section.id = comment.section_id WHERE section.consultation_id = $1";
-	let returnObject = {};
-
 	return dbQuery(getModelSql, [id]).then((res) => {
 		returnObject.consultation = res.rows;
-		console.log(res.rows);
+	});
+}
+
+function getSections(id) {
+	let getSectionsSql =
+		"SELECT * from section INNER JOIN comment ON section.id = comment.section_id WHERE section.consultation_id = $1";
+	dbQuery(getSectionsSql, [id]).then((res) => {
+		returnObject.section = res.rows;
 	});
 }
 

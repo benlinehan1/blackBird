@@ -1,0 +1,2 @@
+<label for="patients">{:Label}</label>
+<select class="patient_dropdown" name="patients"></select>

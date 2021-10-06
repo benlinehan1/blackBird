@@ -1,6 +1,6 @@
 .main_container {
 	display: grid;
-	grid-template-columns: 1fr 6fr;
+	grid-template-columns: minmax(200px, 1fr) 80%;
 }
 
 .sidebar_hp {
@@ -10,12 +10,4 @@
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-}
-.consultations_hp {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	flex-wrap: wrap;
-	text-align: center;
-	background-color: rgb(229, 252, 168);
 }

@@ -10,6 +10,7 @@ const port = serverLog.port; // Default port is 3000
 const { auth } = require("express-openid-connect");
 app.use(
 	auth({
+		auth0Logout: true,
 		issuerBaseURL: process.env.ISSUER_BASE_URL,
 		baseURL: process.env.BASE_URL,
 		clientID: process.env.CLIENT_ID,
@@ -23,7 +24,12 @@ app.use(serverLog.sMsg.req); //Automatically sends messages to the console
 
 /* --- ROUTES --- */
 app.get("/", (req, res) => {
-	res.send("Working");
+	//check if logged in
+	console.log(req.oidc.isAuthenticated());
+	if (req.oidc.isAuthenticated()) {
+		res.redirect("/home");
+	} else res.redirect("/login");
+	res.send("yes");
 });
 
 app.get("/landing", (req, res) => {
@@ -31,6 +37,7 @@ app.get("/landing", (req, res) => {
 });
 
 app.get("/callback", (req, res) => {
+	console.log(req.oidc);
 	res.send("logged in");
 });
 

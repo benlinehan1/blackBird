@@ -108,7 +108,7 @@ app.post("/api/relationships", (req, res) => {
 
 	console.log(req.body);
 
-	relationshipsModel.create(req.body.patient_id, req.body.doctor_id).then((dbRes) => {
+	relationshipsModel.create(req.body.patientId, req.body.doctor_id).then((dbRes) => {
 		console.log(dbRes);
 		res.json({ message: "added", relationship: dbRes });
 	});
@@ -133,7 +133,7 @@ app.get("/api/doctors", (req, res) => {
 // return * doctors ^
 
 app.get("/api/doctors/:id", (req, res) => {
-	doctorModel.doctorGetAllById(req.body.doctor_id).then((dbRes) => {
+	doctorModel.doctorGetAllById(req.body.doctorId).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });
@@ -149,7 +149,7 @@ app.get("/api/patients", (req, res) => {
 // ^ find all patients
 
 app.get("/api/patients/:id", (req, res) => {
-	patientsModel.patientsGetId(req.body.patient_id).then((dbRes) => {
+	patientsModel.patientsGetId(req.body.patientId).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });
@@ -162,7 +162,53 @@ app.get("/api/consultations/:id", (req, res) => {
 	});
 });
 
-// app.post("/api/consultations");
+app.post("/api/consultations", (req, res) => {
+	consultationModel.create(req.body.title, req.body.relationshipId).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+app.delete("/api/consultation/:id", (req, res) => {
+	consultationModel.deleteSingle(req.params.id).then((dbRes) => {
+		res.json({ message: "consultation deleted" });
+	});
+});
+
+app.get("/api/section/:id", (req, res) => {
+	sectionModel.sectionGetByConsulId(req.params.id).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+app.post("/api/section", (req, res) => {
+	sectionModel.sectionCreate(req.body.consultationId, req.body.title, req.body.content).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+app.get("/api/confirmation/:code", (req, res) => {
+	confirmationModel.confirmationGetByConfId(req.params.code).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+app.post("/api/confirmation", (req, res) => {
+	confirmationModel.confirmationCreate(req.body.doctorId).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+app.delete("/api/confirmation/:code", (req, res) => {
+	confirmationModel.confirmationDeleteByConfId(req.params.code).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+app.post("/api/comments", (req, res) => {
+	commentsModel.commentsCreate(req.body.patientId, req.body.consultationId, req.body.content).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
 
 /* --- SERVER LISTEN --- */
 app.listen(port, (_) => serverLog.startup(port));

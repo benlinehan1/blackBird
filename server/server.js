@@ -44,7 +44,9 @@ app.get("/", (req, res) => {
 		signUpHelp.isFirstSignUp(userId).then((res) => {
 			if (res) {
 				authUsersHelp.getMetaData(userId).then((res) => {
-					console.log(res);
+					if (res.role === "patient") {
+						patientsModel.patientsCreate(req.oidc.user.sub, res.name);
+					}
 				});
 			}
 		});

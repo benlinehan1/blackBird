@@ -21,7 +21,6 @@ function getMetaData(userId) {
 			console.log("nah fams");
 		});
 }
-
 module.exports = {
 	getMetaData,
 };

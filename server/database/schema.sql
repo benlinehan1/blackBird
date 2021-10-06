@@ -16,15 +16,18 @@ create table patients (
   id text,
   full_name text
 );
+//added section id
 create table comment (
   id serial primary key,
   patient_id int,
   consultation_id int,
+  section_id int,
   content text
 );
 create table consultation (
   id serial primary key,
-  data timestamp,
+  title text,
+  date timestamp,
   relationship_id int
 );
 create table section (

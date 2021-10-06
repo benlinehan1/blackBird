@@ -1,4 +1,4 @@
-const { dbquery, dbQuery } = require("../lib/dbQuery.js");
+const { dbQuery } = require("../lib/dbQuery.js");
 const dateHelp = require("../lib/dateHelp");
 
 function create(title, relationship_id) {
@@ -7,9 +7,11 @@ function create(title, relationship_id) {
 
 	return dbQuery(sql, [date, title, relationship_id])
 		.then((res) => {
-			return res.rows();
+			console.log(res.rows);
+			return res.rows;
 		})
 		.catch((err) => {
+			console.log(err);
 			console.log("you done fucked up");
 		});
 }
@@ -17,17 +19,14 @@ function create(title, relationship_id) {
 //probs a good idea to make sure that we double check if it is the right user requesting the delet, you know for security reasons
 //but that will probably be done on the actual api endpoint
 function deleteSingle(consultationId) {
-	if (consultationId.length > 1) {
-		//check that a id is actually passed in cause I feel like people could do some weird shit
-		//and delete everything which would suck
-		let sql = "DELETE FROM consultation WHERE id = $1";
+	//check that a id is actually passed in cause I feel like people could do some weird shit
+	//and delete everything which would suck
+	let sql = "DELETE FROM consultation WHERE id = $1";
 
-		return dbQuery(sql[consultationId]).then((res) => {
-			return res.rows();
-		});
-	} else {
-		return false;
-	}
+	return dbQuery(sql, [consultationId]).then((res) => {
+		console.log(res.rows);
+		return res.rows;
+	});
 }
 
 function getWithSections(id) {
@@ -37,6 +36,13 @@ function getWithSections(id) {
 	let returnObject = {};
 
 	return dbQuery(getModelSql, [id]).then((res) => {
-		returnObject.consultation = res.rows();
+		returnObject.consultation = res.rows;
+		console.log(res.rows);
 	});
 }
+
+module.exports = {
+	getWithSections,
+	deleteSingle,
+	create,
+};

@@ -2,7 +2,9 @@ const express = require("express");
 const serverLog = require("./lib/serverLog");
 const statusCodes = require("./lib/statusCodes");
 require("dotenv").config({ path: `${__dirname}/dev.env` });
+const signUpHelp = require("./lib/auth/signUp");
 
+//Server config
 const path = require("path");
 const app = express();
 const port = serverLog.port; // Default port is 3000
@@ -27,9 +29,14 @@ app.get("/", (req, res) => {
 	//check if logged in
 	console.log(req.oidc.isAuthenticated());
 	if (req.oidc.isAuthenticated()) {
+		let userId = req.oidc.user.sub;
+		signUpHelp.isFirstSignUp(userId).then((res) => {
+			console.log(res);
+		});
 		res.redirect("/home");
-	} else res.redirect("/login");
-	res.send("yes");
+	} else {
+		res.redirect("/login");
+	}
 });
 
 app.get("/addconsultation", (req, res) => {

@@ -84,6 +84,17 @@ function getAllPendingPatients(doctor_id) {
 		});
 }
 
+function getAllConfirmedPatients(doctor_id) {
+	let sql = `select patients.* from relationships join patients on relationships.patient_id = patients.id where (doctor_id = $1 and pending = false)`;
+	return dbQuery(sql, [doctor_id])
+		.then((dbRes) => {
+			return dbRes.rows;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+}
+
 module.exports = {
 	all,
 	create,
@@ -93,4 +104,5 @@ module.exports = {
 	getAllPendingPatients,
 	getAllPatientsOfDoctors,
 	getAllDoctorsOfPatients,
+	getAllConfirmedPatients,
 };

@@ -137,6 +137,15 @@ app.get("/api/relationships/pending/:doctorId", (req, res) => {
 		});
 	});
 });
+app.get("/api/relationships/confirmed/:doctorId", (req, res) => {
+	relationshipsModel.getAllPendingPatients(req.params.doctorId).then((dbRes) => {
+		console.log(dbRes);
+		console.log(req.params.doctorId);
+		res.json({ message: dbRes }).catch((err) => {
+			console.log(err);
+		});
+	});
+});
 
 //^ adds relationship
 

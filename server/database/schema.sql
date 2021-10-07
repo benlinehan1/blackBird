@@ -43,3 +43,5 @@ create table confirmation (
   date timestamp,
   confirmation_code text
 );
+
+INSERT INTO doctors (full_name, type, credentials) values (keegan pratt, )

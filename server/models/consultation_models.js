@@ -29,6 +29,7 @@ function deleteSingle(consultationId) {
 	});
 }
 
+
 function getSingle(id) {
 	let getModelSql = "SELECT * from consultation WHERE id = $1";
 	return dbQuery(getModelSql, [id]).then((res) => {
@@ -41,7 +42,9 @@ function getSections(id) {
 		"SELECT * from section INNER JOIN comment ON section.id = comment.section_id WHERE section.consultation_id = $1";
 	dbQuery(getSectionsSql, [id]).then((res) => {
 		returnObject.section = res.rows;
+
 	});
+	console.log(returnObject);
 }
 
 module.exports = {

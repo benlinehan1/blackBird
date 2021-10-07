@@ -21,8 +21,8 @@ const section = require("./server/models/section_models.js");
 
 // patient.patientCreate("2", "Nic Juncal");
 
-consultation.create("consultation", 4);
+// consultation.create("consultation", 4);
 
-section.sectionCreate("1", "Our Consultation", "Wow so cool test");
+// section.sectionCreate("1", "Our Consultation", "Wow so cool test");
 
-// relationship.create("2", "2");
+relationship.create("1", "1");

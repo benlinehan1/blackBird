@@ -244,5 +244,29 @@ app.post("/api/email/:email/:doctor_id", (req, res) => {
 	confirmationModel.confirmationCreate(req.params.doctor_id, confirmation_code);
 });
 
+app.patch("/api/confirmrelationship/:code", (req, res) => {
+	if (req.oidc.isAuthenticated()) {
+		// currentuser_id = req.oidc.user.sub();
+		let currentuser_id = req.oidc.user.sub();
+
+		let confirmation_code = req.params.code;
+
+		confirmationModel.confirmationGetByConfId(confirmation_code).then((dbRes) => {
+			console.log(dbRes);
+			var doctor_id = dbRes[0].doctor_id;
+			console.log(doctor_id);
+			relationshipsModel.confirm(doctor_id).then((dbRes) => {
+				// confirmationModel.confirmationDeleteByConfId(dbRes.rows[0])
+				dbRes;
+				confirmationModel.confirmationDeleteByConfId(confirmation_code).then((dbRes) => {
+					res.json({ message: "confirmed delete" });
+				});
+			});
+		});
+	} else {
+		res.json({ message: "no" });
+	}
+});
+
 /* --- SERVER LISTEN --- */
 app.listen(port, (_) => serverLog.startup(port));

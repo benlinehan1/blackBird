@@ -146,7 +146,7 @@ app.get("/api/currentuser", (req, res) => {
 
 		res.json({ user_id: currentuser_id });
 	} else {
-		res.json({ message: "log in coward" });
+		res.json({ user_id: "log in error" });
 	}
 });
 
@@ -198,6 +198,12 @@ app.get("/api/section/:id", (req, res) => {
 
 app.post("/api/section", (req, res) => {
 	sectionModel.sectionCreate(req.body.consultationId, req.body.title, req.body.content).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+app.patch("/api/section", (req, res) => {
+	sectionModel.sectionPatch(req.body.consultation_id, req.body.title, req, body.content).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });

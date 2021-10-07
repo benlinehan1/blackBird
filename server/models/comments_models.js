@@ -22,6 +22,17 @@ function commentsGetAllByConsultation(consultation_id) {
 			console.log("little problem");
 		});
 }
+
+function getBySectionAndConsultation(consultation_id, section_id) {
+	console.log(consultation_id);
+	let sql = "select * from comment where (consultation_id = $1 and section_id = $2)";
+
+	return dbQuery(sql, [consultation_id, section_id]).then((res) => {
+		console.log(res);
+		return res.rows;
+	});
+}
+
 function commentsGetAllByPatientId(patient_id) {
 	let sql = "select * from comment where patient_id = $1 returning *;";
 	return dbQuery(sql, [patient_id])
@@ -46,6 +57,7 @@ function commentsCreate(patient_id, consultation_id, content, section_id) {
 		});
 }
 module.exports = {
+	getBySectionAndConsultation,
 	commentsGetAllByPatientIdAndConsultation,
 	commentsGetAllByPatientId,
 	commentsGetAllByConsultation,

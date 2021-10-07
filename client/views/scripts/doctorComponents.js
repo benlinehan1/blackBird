@@ -11,7 +11,9 @@ truePatientById().then((res) => {
 		component("PatientSelector", { name: patient.full_name }, 1).then((comp) => {
 			comp.classList.add("patient_selector");
 			sideBar.appendChild(comp);
-
+		});
+	});
+});
 
 getAllConsultations().then((res) => {
 	let consultations = res.consultations;

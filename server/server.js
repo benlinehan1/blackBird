@@ -18,7 +18,7 @@ const sectionModel = require("./models/section_models");
 //Server config
 const path = require("path");
 const app = express();
-const port = serverLog.port; // Default port is 3000
+const port = process.env.PORT || serverLog.port; // Default port is 3000
 
 app.use(
 	auth({

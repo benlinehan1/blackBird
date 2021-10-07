@@ -1,0 +1,112 @@
+Date : 2021-10-07 23:37:06
+Directory : /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js
+Total : 67 files,  2036 codes, 117 comments, 377 blanks, all 2530 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |         32 |      1,340 |        105 |        277 |      1,722 |
+| CSS        |          6 |        310 |         12 |         62 |        384 |
+| XML        |          3 |        158 |          0 |          1 |        159 |
+| HTML       |         22 |        155 |          0 |         31 |        186 |
+| SQL        |          1 |         44 |          0 |          2 |         46 |
+| JSON       |          1 |         27 |          0 |          1 |         28 |
+| Markdown   |          2 |          2 |          0 |          3 |          5 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                  | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                     |         67 |      2,036 |        117 |        377 |      2,530 |
+| client                                                                                                                |         44 |      1,227 |         84 |        241 |      1,552 |
+| client/components                                                                                                     |         15 |         32 |          0 |         20 |         52 |
+| client/lib                                                                                                            |          6 |        124 |          7 |         23 |        154 |
+| client/resources                                                                                                      |          3 |        158 |          0 |          1 |        159 |
+| client/resources/images                                                                                               |          3 |        158 |          0 |          1 |        159 |
+| client/resources/images/branding                                                                                      |          3 |        158 |          0 |          1 |        159 |
+| client/styles                                                                                                         |          5 |        102 |          0 |         20 |        122 |
+| client/views                                                                                                          |         14 |        810 |         73 |        174 |      1,057 |
+| client/views/modal                                                                                                    |          2 |        507 |         61 |        132 |        700 |
+| client/views/scripts                                                                                                  |          5 |        178 |         12 |         30 |        220 |
+| server                                                                                                                |         18 |        773 |         23 |        126 |        922 |
+| server/database                                                                                                       |          1 |         44 |          0 |          2 |         46 |
+| server/lib                                                                                                            |          9 |        150 |          2 |         24 |        176 |
+| server/lib/auth                                                                                                       |          2 |         49 |          1 |          7 |         57 |
+| server/models                                                                                                         |          7 |        334 |          6 |         48 |        388 |
++-----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                              | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/Readme.md                                         | Markdown   |          0 |          0 |          1 |          1 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/ConfirmationInput.cmp           | HTML       |          1 |          0 |          1 |          2 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/ConsultationForm.cmp            | HTML       |          4 |          0 |          3 |          7 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/ConsultationLink.cmp            | HTML       |          2 |          0 |          1 |          3 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/DoctorSelector.cmp              | HTML       |          2 |          0 |          1 |          3 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/DoctorUl.cmp                    | HTML       |          1 |          0 |          1 |          2 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/HPAddConsultation.cmp           | HTML       |          4 |          0 |          4 |          8 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/HPAddNewSection.cmp             | HTML       |          0 |          0 |          1 |          1 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/Heading.cmp                     | HTML       |          1 |          0 |          1 |          2 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/HpBaseConsult.cmp               | HTML       |          2 |          0 |          1 |          3 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/HpView.cmp                      | HTML       |          2 |          0 |          1 |          3 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/PatientBaseConsult.cmp          | HTML       |          3 |          0 |          1 |          4 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/PatientSection.cmp              | HTML       |          4 |          0 |          1 |          5 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/PatientSelector.cmp             | HTML       |          1 |          0 |          1 |          2 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/Section.cmp                     | HTML       |          4 |          0 |          1 |          5 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/components/addPatient.cmp                  | HTML       |          1 |          0 |          1 |          2 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/lib/cmpParse.js                            | JavaScript |         23 |          0 |          4 |         27 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/lib/consultationFunc.js                    | JavaScript |         22 |          0 |          4 |         26 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/lib/doctorDisplay.js                       | JavaScript |         27 |          4 |          6 |         37 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/lib/patientConsultation.js                 | JavaScript |         17 |          0 |          4 |         21 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/lib/toQuery.js                             | JavaScript |          6 |          0 |          0 |          6 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/lib/userDisplay.js                         | JavaScript |         29 |          3 |          5 |         37 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/resources/images/branding/Icon.svg         | XML        |          1 |          0 |          0 |          1 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/resources/images/branding/IconWithText.svg | XML        |          1 |          0 |          0 |          1 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/resources/images/branding/Text.svg         | XML        |        156 |          0 |          1 |        157 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/script.js                                  | JavaScript |          1 |          4 |          3 |          8 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/styles/coreStyles.css                      | CSS        |         66 |          0 |         13 |         79 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/styles/doctorView.css                      | CSS        |         15 |          0 |          3 |         18 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/styles/hpviewLayout.css                    | CSS        |          4 |          0 |          1 |          5 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/styles/patientView.css                     | CSS        |         11 |          0 |          2 |         13 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/styles/section.css                         | CSS        |          6 |          0 |          1 |          7 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/addconsultation.html                 | HTML       |         14 |          0 |          2 |         16 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/document_guide.md                    | Markdown   |          2 |          0 |          2 |          4 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/home.html                            | HTML       |         12 |          0 |          1 |         13 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/hpview.html                          | HTML       |         31 |          0 |          2 |         33 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/landing.html                         | HTML       |         20 |          0 |          1 |         21 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/modal/tingle.css                     | CSS        |        208 |         12 |         42 |        262 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/modal/tingle.js                      | JavaScript |        299 |         49 |         90 |        438 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/patientview.html                     | HTML       |         31 |          0 |          2 |         33 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/scripts/components.js                | JavaScript |          0 |          0 |          1 |          1 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/scripts/consultationForm.js          | JavaScript |          0 |          0 |          1 |          1 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/scripts/doctorComponents.js          | JavaScript |         65 |          5 |          7 |         77 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/scripts/patientview.js               | JavaScript |         67 |          7 |          8 |         82 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/scripts/sillylittletest.js           | JavaScript |         46 |          0 |         13 |         59 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/client/views/sillylittletest.html                 | HTML       |         15 |          0 |          2 |         17 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/db_console.js                                     | JavaScript |          9 |         10 |          6 |         25 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/package.json                                      | JSON       |         27 |          0 |          1 |         28 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/database/schema.sql                        | SQL        |         44 |          0 |          2 |         46 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/lib/auth/authUsers.js                      | JavaScript |         24 |          0 |          3 |         27 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/lib/auth/signUp.js                         | JavaScript |         25 |          1 |          4 |         30 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/lib/confirmationCode.js                    | JavaScript |          6 |          0 |          2 |          8 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/lib/dateHelp.js                            | JavaScript |         20 |          1 |          5 |         26 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/lib/dbQuery.js                             | JavaScript |         18 |          0 |          3 |         21 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/lib/emailSend.js                           | JavaScript |         26 |          0 |          4 |         30 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/lib/patientFunc.js                         | JavaScript |         13 |          0 |          3 |         16 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/lib/serverLog.js                           | JavaScript |         13 |          0 |          0 |         13 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/lib/statusCodes.js                         | JavaScript |          5 |          0 |          0 |          5 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/models/comments_models.js                  | JavaScript |         51 |          0 |          3 |         54 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/models/confirmation_models.js              | JavaScript |         40 |          0 |          4 |         44 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/models/consultation_models.js              | JavaScript |         49 |          4 |         11 |         64 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/models/doctor_models.js                    | JavaScript |         39 |          1 |          3 |         43 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/models/patients_models.js                  | JavaScript |         39 |          1 |          2 |         42 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/models/relationships_models.js             | JavaScript |         92 |          0 |         19 |        111 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/models/section_models.js                   | JavaScript |         24 |          0 |          6 |         30 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/server/server.js                                  | JavaScript |        245 |         15 |         52 |        312 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/test.html                                         | HTML       |          0 |          0 |          1 |          1 |
+| /home/keeganpratt/MainDrive/Documents/Programming/expressStarter.js/test.js                                           | JavaScript |          0 |          0 |          1 |          1 |
+| Total                                                                                                                 |            |      2,036 |        117 |        377 |      2,530 |
++-----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

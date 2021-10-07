@@ -1,5 +1,3 @@
-const axios = require("axios");
-
 function userID() {
 	// function is assync
 	return axios.get("http://localhost:3000/api/currentuser").then((res) => {
@@ -24,8 +22,8 @@ function patientById() {
 	});
 }
 
-function truePatientById(doctor_id) {
-	return axios.get(`http://localhost:3000/api/relationships/confirmed/${doctor_id}`).then((res) => {
+function truePatientById() {
+	return axios.get(`http://localhost:3000/api/relationships/confirmed/${2}`).then((res) => {
 		console.log(res);
 		return res;
 	});
@@ -34,3 +32,5 @@ function truePatientById(doctor_id) {
 patientById().then((res) => {
 	console.log(res);
 });
+
+export default truePatientById;

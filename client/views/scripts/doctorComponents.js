@@ -1,8 +1,20 @@
 import component from "./../../lib/cmpParse.js";
+
+import truePatientById from "../../lib/userDisplay.js";
 const consultationDiv = document.querySelector(".consultations");
 const sideBar = document.querySelector(".sidebar");
 const adder = document.querySelector(".adder");
-
+truePatientById().then((res) => {
+	let patients = res.data.message;
+	console.log(res);
+	patients.forEach((patient) => {
+		component("PatientSelector", { name: patient.full_name }, 1).then((comp) => {
+			comp.classList.add("patient_selector");
+			sideBar.appendChild(comp);
+			return;
+		});
+	});
+});
 adder.addEventListener("click", () => {
 	adderModal.open();
 });
@@ -57,9 +69,3 @@ component("ConsultationLink", {}, 0).then((comp) => {
 });
 
 //-------------------------------------------------------------------------------------------------------------
-
-component("PatientSelector", {}, 1).then((comp) => {
-	comp.classList.add("patient_selector");
-	sideBar.appendChild(comp);
-	return;
-});

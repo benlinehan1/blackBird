@@ -12,7 +12,7 @@ function getSingleConsultation() {
 }
 
 function getAllConsultations() {
-	return axios.get(`http://localhost:3000/api/consultations/${4}`).then((res) => {
+	return axios.get(`http://localhost:3000/api/consultations/${1}`).then((res) => {
 		return res.data;
 	});
 }

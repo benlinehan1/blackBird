@@ -17,7 +17,8 @@
 		"nodemon": "^2.0.13"
 	},
 	"scripts": {
-		"start": "nodemon server/server.js"
+		"dev": "nodemon server/server.js",
+		"start": "node server/server.js"
 	},
 	"author": "",
 	"license": "ISC"

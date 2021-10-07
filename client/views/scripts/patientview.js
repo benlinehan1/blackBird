@@ -26,6 +26,15 @@ component("ConsultationLink", {}, 0).then((comp) => {
 	comp.classList.add("consultation_link");
 	comp.classList.add("rounded");
 	comp.addEventListener("click", (e) => {
+		component("PatientBaseConsult", {}, 1).then((comp) => {
+			comp.classList.add("component");
+			comp.classList.add("doctor_selector");
+			component("PatientSection", {}, 1).then((comp2) => {
+				comp.appendChild(comp2);
+				console.log(comp.innerHTML);
+				modal.setContent(comp.innerHTML);
+			});
+		});
 		modal.open();
 	});
 	consultationDiv.appendChild(comp);
@@ -35,21 +44,18 @@ component("ConsultationLink", {}, 0).then((comp) => {
 //---------------------------------------------------------------------------------------------
 
 component("DoctorSelector", {}, 1).then((comp) => {
-	comp.classList.add("component");
 	comp.classList.add("doctor_selector");
 	sideBar.appendChild(comp);
 	return;
 });
 
 component("DoctorSelector", {}, 2).then((comp) => {
-	comp.classList.add("component");
 	comp.classList.add("doctor_selector");
 	sideBar.appendChild(comp);
 	return;
 });
 
 component("DoctorSelector", {}, 3).then((comp) => {
-	comp.classList.add("component");
 	comp.classList.add("doctor_selector");
 	sideBar.appendChild(comp);
 	return;

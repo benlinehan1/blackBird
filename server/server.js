@@ -14,11 +14,13 @@ const doctorModel = require("./models/doctor_models");
 const patientsModel = require("./models/patients_models");
 const relationshipsModel = require("./models/relationships_models");
 const sectionModel = require("./models/section_models");
+const confirmationCode = require("./lib/confirmationCode");
 
 //Server config
 const path = require("path");
+const { email } = require("./lib/emailSend");
 const app = express();
-const port = serverLog.port; // Default port is 3000
+const port = process.env.PORT || serverLog.port; // Default port is 3000
 
 app.use(
 	auth({
@@ -146,7 +148,7 @@ app.get("/api/currentuser", (req, res) => {
 
 		res.json({ user_id: currentuser_id });
 	} else {
-		res.json({ message: "log in coward" });
+		res.json({ user_id: "log in error" });
 	}
 });
 
@@ -159,19 +161,24 @@ app.get("/api/patients", (req, res) => {
 // ^ find all patients
 
 app.get("/api/patients/:id", (req, res) => {
-	patientsModel.patientsGetId(req.params.id).then((dbRes) => {
+  
+patientsModel.patientsGetId(req.params.patientId).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });
 
 // find patient by id ^
 
-app.get("/api/consultations/:id", (req, res) => {
-	let result = consultationModel.getWithSections(req.params.id);
+app.get("/api/consultation/:id", (req, res) => {
+	consultationModel.getSingle(req.params.id).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
 
-	console.log(result);
-
-	res.send({});
+app.get("/api/consultationsections/:id", (req, res) => {
+	consultationModel.getSections(req.params.id).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
 });
 
 app.post("/api/consultations", (req, res) => {
@@ -198,6 +205,12 @@ app.post("/api/section", (req, res) => {
 	});
 });
 
+app.patch("/api/section", (req, res) => {
+	sectionModel.sectionPatch(req.body.consultation_id, req.body.title, req, body.content).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
 app.get("/api/confirmation/:code", (req, res) => {
 	confirmationModel.confirmationGetByConfId(req.params.code).then((dbRes) => {
 		res.json({ message: dbRes });
@@ -220,6 +233,15 @@ app.post("/api/comments", (req, res) => {
 	commentsModel.commentsCreate(req.body.patientId, req.body.consultationId, req.body.content).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
+});
+
+app.post("/api/email/:email/:doctor_id", (req, res) => {
+	let confirmation_code = confirmationCode();
+
+	email(req.params.email, confirmation_code).then((response) => {
+		response.json({ message: "Email requested. Please allow 24 hours." });
+	});
+	confirmationModel.confirmationCreate(req.params.doctor_id, confirmation_code);
 });
 
 /* --- SERVER LISTEN --- */

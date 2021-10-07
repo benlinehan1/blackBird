@@ -1,2 +1,4 @@
-<input class="title" type="text" /> 
-<textarea class="section" type="text" />
+<div class="section_container">
+	<input class="title" type="text" />
+	<textarea class="section" type="text"></textarea>
+</div>

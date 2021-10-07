@@ -74,10 +74,14 @@ function getStatus(id) {
 }
 
 function getAllPendingPatients(doctor_id) {
-	let sql = `select patients.* from relationships join patients on relationships.patient_id = patients.id where (patient_id = $1 and pending = true)`;
-	return dbQuery(sql, [doctor_id]).then((dbRes) => {
-		return dbRes.rows;
-	});
+	let sql = `select patients.* from relationships join patients on relationships.patient_id = patients.id where (doctor_id = $1 and pending = true)`;
+	return dbQuery(sql, [doctor_id])
+		.then((dbRes) => {
+			return dbRes.rows;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 }
 
 module.exports = {

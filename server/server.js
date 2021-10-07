@@ -14,7 +14,7 @@ const doctorModel = require("./models/doctor_models");
 const patientsModel = require("./models/patients_models");
 const relationshipsModel = require("./models/relationships_models");
 const sectionModel = require("./models/section_models");
-const confirmationCode = require("./lib/confirmationCode");
+const { confirmationCode } = require("./lib/confirmationCode");
 
 //Server config
 const path = require("path");
@@ -250,7 +250,8 @@ app.post("/api/email/:email/:doctor_id", (req, res) => {
 	let confirmation_code = confirmationCode();
 
 	email(req.params.email, confirmation_code).then((response) => {
-		response.json({ message: "Email requested. Please allow 24 hours." });
+		console.log(response);
+		res.json({ message: "Email requested. Please allow 24 hours." });
 	});
 	confirmationModel.confirmationCreate(req.params.doctor_id, confirmation_code);
 });

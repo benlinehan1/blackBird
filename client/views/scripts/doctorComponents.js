@@ -1,5 +1,30 @@
 import component from "./../../lib/cmpParse.js";
 const consultationDiv = document.querySelector(".consultations");
+const sideBar = document.querySelector(".sidebar");
+const adder = document.querySelector(".adder");
+
+adder.addEventListener("click", () => {
+	adderModal.open();
+});
+
+var adderModal = new tingle.modal({
+	stickyFooter: false,
+	closeMethods: ["overlay", "button", "escape"],
+	closeLabel: "Close",
+	cssClass: ["custom-class-1", "custom-class-2"],
+	onOpen: function () {
+		console.log("modal open");
+	},
+	onClose: function () {
+		console.log("modal closed");
+	},
+	beforeClose: function () {
+		// here's goes some logic
+		// e.g. save content before closing the modal
+		return true; // close the modal
+		return false; // nothing happens
+	},
+});
 
 var modal = new tingle.modal({
 	stickyFooter: false,
@@ -28,5 +53,13 @@ component("ConsultationLink", {}, 0).then((comp) => {
 		modal.open();
 	});
 	consultationDiv.appendChild(comp);
+	return;
+});
+
+//-------------------------------------------------------------------------------------------------------------
+
+component("PatientSelector", {}, 1).then((comp) => {
+	comp.classList.add("patient_selector");
+	sideBar.appendChild(comp);
 	return;
 });

@@ -1,10 +1,9 @@
 import component from "./../../lib/cmpParse.js";
 import getAllConsultations from "./../../lib/patientConsultation.js";
 import { getSectionsByConsultation } from "./../../lib/consultationFunc.js";
+import { getCommentsBySection } from "./../../lib/commentsFunc.js";
 const consultationDiv = document.querySelector(".consultations");
 const sideBar = document.querySelector(".sidebar");
-
-//We need to create a seed file desperatly
 
 //-------------------
 //ALSO NEED TO CHUCK THIS ENTIRE THING INTO A FUNCTION SO WE CAN CALL IT WHHEN WE WANT TO DO
@@ -22,13 +21,18 @@ getAllConsultations().then((res) => {
 				component("PatientBaseConsult", {}, 1).then((comp) => {
 					getSectionsByConsultation(consultation.id).then((sections) => {
 						let sectionDiv = comp.querySelector(".section");
-						console.log(sectionDiv);
 						sections = sections.message;
 						sections.forEach((section) => {
-							console.log(section);
 							component("PatientSection", { title: section.title, content: section.content }, 1).then(
 								(comp2) => {
-									console.log("append");
+									getCommentsBySection(consultation.id, section.id).then((res) => {
+										if (res.results.length > 0) {
+											console.log("yes");
+											let commentArea = sectionDiv.querySelector("textarea");
+											commentArea.innerText = res.results[0].content;
+										}
+										modal.setContent(comp.innerHTML);
+									});
 									sectionDiv.appendChild(comp2);
 									modal.setContent(comp.innerHTML);
 								}
@@ -36,7 +40,6 @@ getAllConsultations().then((res) => {
 						});
 
 						modal.open();
-						console.log(modal.getContent().innerHTML);
 					});
 					comp.classList.add("component");
 					comp.classList.add("doctor_selector");
@@ -53,17 +56,12 @@ var modal = new tingle.modal({
 	closeMethods: ["overlay", "button", "escape"],
 	closeLabel: "Close",
 	cssClass: ["custom-class-1", "custom-class-2"],
-	onOpen: function () {
-		console.log("modal open");
-	},
-	onClose: function () {
-		console.log("modal closed");
-	},
+	onOpen: function () {},
+	onClose: function () {},
 	beforeClose: function () {
 		// here's goes some logic
 		// e.g. save content before closing the modal
 		return true; // close the modal
-		return false; // nothing happens
 	},
 });
 

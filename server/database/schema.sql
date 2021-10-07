@@ -1,4 +1,7 @@
+psql
+drop database blackbird;
 create database blackbird;
+\c blackbird;
 
 create table doctors (
   id text,

@@ -267,6 +267,13 @@ app.delete("/api/confirmation/:code", (req, res) => {
 	});
 });
 
+app.get("/api/commentsBySection", (req, res) => {
+	const { consultationId, sectionId } = req.query;
+	commentsModel.getBySectionAndConsultation(consultationId, sectionId).then((response) => {
+		res.json({ results: response });
+	});
+});
+
 app.post("/api/comments", (req, res) => {
 	commentsModel.commentsCreate(req.body.patientId, req.body.consultationId, req.body.content).then((dbRes) => {
 		res.json({ message: dbRes });

@@ -1,5 +1,4 @@
 // //run this create data script to create data, probably best to clear the data  base first to aviod any conflicts
-const { timeStamp } = require("console");
 const confirmation = require("./server/models/confirmation_models.js");
 const comment = require("./server/models/comments_models.js");
 const consultation = require("./server/models/consultation_models.js");
@@ -38,22 +37,22 @@ relationship.create("1", "4"); //id will be 9
 
 consultation.create("Dis a consultation", 1);
 section.sectionCreate(1, "Section 1 of consultation 1", "sum section content for yall");
-comment.commentsCreate("1", 1, "comment for consultation 1 section 1");
+comment.commentsCreate("1", 1, "comment for consultation 1 section 1", 1);
 section.sectionCreate(1, "Section 2 of consultation 1", "sum section content for yall");
 
 consultation.create("Bro why you so depressed?", 1);
 section.sectionCreate(2, "Section 1 of consultation 2", "sum section content for yall");
-comment.commentsCreate("1", 2, "comment for consultation 2 section 1");
+comment.commentsCreate("1", 2, "comment for consultation 2 section 1", 1);
 section.sectionCreate(2, "Section 2 of consultation 2", "sum section content for yall");
 
 consultation.create("Lol nvm figured out why, you ugly as hell", 1);
 section.sectionCreate(2, "Section 1 of consultation 2", "sum section content for yall");
-comment.commentsCreate("1", 3, "comment for consultation 3 section 2");
+comment.commentsCreate("1", 3, "comment for consultation 3 section 2", 2);
 section.sectionCreate(2, "Section 2 of consultation 2", "sum section content for yall");
 
 consultation.create("Id be depressed too if I looked like that", 1);
 section.sectionCreate(3, "Section 1 of consultation 3", "sum section content for yall");
-comment.commentsCreate("1", 4, "comment for consultation 4 section 2");
+comment.commentsCreate("1", 4, "comment for consultation 4 section 2", 2);
 section.sectionCreate(3, "Section 2 of consultation 3", "sum section content for yall");
 
 consultation.create("another consultation", 2);

@@ -25,4 +25,5 @@ function sectionGetByConsulId(consultationId) {
 module.exports = {
 	sectionCreate,
 	sectionGetByConsulId,
+	sectionPatch,
 };

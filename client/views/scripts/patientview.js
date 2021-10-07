@@ -8,48 +8,60 @@ const sideBar = document.querySelector(".sidebar");
 //-------------------
 //ALSO NEED TO CHUCK THIS ENTIRE THING INTO A FUNCTION SO WE CAN CALL IT WHHEN WE WANT TO DO
 //----------------
-getAllConsultations().then((res) => {
-	// console.log(res.consultations);
-	let consultations = res.consultations;
+function generateConsultations(doctor_id) {
+	getAllConsultations().then((res) => {
+		// console.log(res.consultations);
+		let consultations = res.consultations;
 
-	consultations.forEach((consultation) => {
-		component("ConsultationLink", { title: consultation.title, date: consultation.date }, 0).then((comp) => {
-			comp.classList.add("component");
-			comp.classList.add("consultation_link");
-			comp.classList.add("rounded");
-			comp.addEventListener("click", (e) => {
-				component("PatientBaseConsult", {}, 1).then((comp) => {
-					getSectionsByConsultation(consultation.id).then((sections) => {
-						let sectionDiv = comp.querySelector(".section");
-						sections = sections.message;
-						sections.forEach((section) => {
-							component("PatientSection", { title: section.title, content: section.content }, 1).then(
-								(comp2) => {
-									getCommentsBySection(consultation.id, section.id).then((res) => {
-										if (res.results.length > 0) {
-											console.log("yes");
-											let commentArea = sectionDiv.querySelector("textarea");
-											commentArea.innerText = res.results[0].content;
-										}
+		consultations.forEach((consultation) => {
+			component("ConsultationLink", { title: consultation.title, date: consultation.date }, 0).then((comp) => {
+				comp.classList.add("component");
+				comp.classList.add("consultation_link");
+				comp.classList.add("rounded");
+				comp.addEventListener("click", (e) => {
+					component("PatientBaseConsult", {}, 1).then((comp) => {
+						getSectionsByConsultation(consultation.id).then((sections) => {
+							let sectionDiv = comp.querySelector(".section");
+							sections = sections.message;
+							sections.forEach((section) => {
+								component("PatientSection", { title: section.title, content: section.content }, 1).then(
+									(comp2) => {
+										getCommentsBySection(consultation.id, section.id).then((res) => {
+											if (res.results.length > 0) {
+												console.log("yes");
+												let commentArea = sectionDiv.querySelector("textarea");
+												//Add event listener to the button that updates the comment
+												commentArea.innerText = res.results[0].content;
+											} else {
+												let commentArea = sectionDiv.querySelector("textarea");
+												//Add button evenet listener to create a new comment\
+												//becuse this else is ran if the comment does not exist
+											}
+
+											modal.setContent(comp.innerHTML);
+										});
+										sectionDiv.appendChild(comp2);
 										modal.setContent(comp.innerHTML);
-									});
-									sectionDiv.appendChild(comp2);
-									modal.setContent(comp.innerHTML);
-								}
-							);
-						});
+									}
+								);
+							});
 
-						modal.open();
+							modal.open();
+						});
+						comp.classList.add("component");
+						comp.classList.add("doctor_selector");
 					});
-					comp.classList.add("component");
-					comp.classList.add("doctor_selector");
 				});
+				consultationDiv.appendChild(comp);
+				return;
 			});
-			consultationDiv.appendChild(comp);
-			return;
 		});
 	});
-});
+}
+
+function updateComment(comment_id, new_content) {}
+
+function createComment(comment_id, new_content) {}
 
 var modal = new tingle.modal({
 	stickyFooter: false,
@@ -64,6 +76,8 @@ var modal = new tingle.modal({
 		return true; // close the modal
 	},
 });
+
+generateConsultations(1);
 
 //---------------------------------------------------------------------------------------------
 

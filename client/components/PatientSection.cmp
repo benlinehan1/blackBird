@@ -3,5 +3,6 @@
 	<div class="section_content_holder">
 		<p>{:content}</p>
 		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<button class="comment_post">Submit Commment</button>
 	</div>
 </div>

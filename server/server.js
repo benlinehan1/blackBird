@@ -157,9 +157,11 @@ app.get("/api/patients/:id", (req, res) => {
 // find patient by id ^
 
 app.get("/api/consultations/:id", (req, res) => {
-	consultationModel.getWithSections(req.params.id).then((dbRes) => {
-		res.json({ message: dbRes });
-	});
+	let result = consultationModel.getWithSections(req.params.id);
+
+	console.log(result);
+
+	res.send({});
 });
 
 app.post("/api/consultations", (req, res) => {

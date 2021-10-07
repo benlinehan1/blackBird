@@ -17,8 +17,12 @@ const section = require("./server/models/section_models.js");
 
 // section.sectionCreate(2, "Life must go on", "You're surely fine");
 
-doctor.doctorCreate("2", "Sarah Leah", "Psychiatrist", 2);
+// doctor.doctorCreate("2", "Sarah Leah", "Psychiatrist", 2);
 
-patient.patientCreate("2", "Nic Juncal");
+// patient.patientCreate("2", "Nic Juncal");
+
+consultation.create("consultation", 4);
+
+section.sectionCreate("1", "Our Consultation", "Wow so cool test");
 
 // relationship.create("2", "2");

@@ -115,7 +115,19 @@ app.post("/api/relationships", (req, res) => {
 		res.json({ message: "added", relationship: dbRes });
 	});
 });
+app.get("/api/relationships/doctor/:doctorId", (req, res) => {
+	relationshipsModel.getAllDoctorsOfPatients(req.params.doctorId).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
 
+app.get("/api/relationships/patient/:patientId", (req, res) => {
+	relationshipsModel.getAllPatientsOfDoctors(req.params.patientId).then((dbRes) => {
+		res.json({ message: dbRes }).catch((err) => {
+			console.log(err);
+		});
+	});
+});
 //^ adds relationship
 
 app.delete("/api/relationships/:id", (req, res) => {
@@ -161,8 +173,7 @@ app.get("/api/patients", (req, res) => {
 // ^ find all patients
 
 app.get("/api/patients/:id", (req, res) => {
-  
-patientsModel.patientsGetId(req.params.patientId).then((dbRes) => {
+	patientsModel.patientsGetId(req.params.patientId).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });

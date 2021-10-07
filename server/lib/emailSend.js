@@ -1,18 +1,18 @@
-function email() {
+function email(email, confirmation_code) {
 	const sgMail = require("@sendgrid/mail");
 	sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 	const msg = {
-		to: "benjaminlinehan21@gmail.com", // Change to your recipient
+		to: `${email}`, // Change to your recipient
 		from: "blackbirdandthreemusketeers@gmail.com", // Change to your verified sender
-		subject: "See you on Friday besty",
-		text: "code",
+		subject: "Authorisation code",
+		text: `${confirmation_code}`,
 		html: ` This has been sent through BLACKBIRD email server
-    This is fun and fresh
+    Hey sweaty,
 
-    send your CV if you want to work for us
+	Here's your authorisation code gorgeous xx
     `,
 	};
-	sgMail
+	return sgMail
 		.send(msg)
 		.then(() => {
 			console.log("Email sent");

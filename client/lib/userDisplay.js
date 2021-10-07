@@ -23,7 +23,7 @@ function patientById() {
 }
 
 function truePatientById() {
-	return axios.get(`http://localhost:3000/api/relationships/confirmed/${2}`).then((res) => {
+	return axios.get(`http://localhost:3000/api/relationships/confirmed/${1}`).then((res) => {
 		console.log(res);
 		return res;
 	});

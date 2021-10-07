@@ -1,5 +1,6 @@
 import component from "./../../lib/cmpParse.js";
 import getAllConsultations from "./../../lib/doctorDisplay.js";
+import truePatientById from "./../../lib/userDisplay.js";
 const consultationDiv = document.querySelector(".consultations");
 const sideBar = document.querySelector(".sidebar");
 const adder = document.querySelector(".adder");
@@ -8,6 +9,7 @@ truePatientById().then((res) => {
 	let patients = res.data.message;
 	console.log(res);
 	patients.forEach((patient) => {
+		console.log(patient);
 		component("PatientSelector", { name: patient.full_name }, 1).then((comp) => {
 			comp.classList.add("patient_selector");
 			sideBar.appendChild(comp);

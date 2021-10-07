@@ -9,7 +9,7 @@ const sideBar = document.querySelector(".sidebar");
 //ALSO NEED TO CHUCK THIS ENTIRE THING INTO A FUNCTION SO WE CAN CALL IT WHHEN WE WANT TO DO
 //----------------
 function generateConsultations(doctor_id) {
-	getAllConsultations().then((res) => {
+	getAllConsultations(doctor_id).then((res) => {
 		// console.log(res.consultations);
 		let consultations = res.consultations;
 

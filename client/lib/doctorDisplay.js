@@ -22,8 +22,8 @@ function doctorById() {
 	// function is assync
 }
 
-function getAllConsultations() {
-	return axios.get(`http://localhost:3000/api/consultations/${4}`).then((res) => {
+function getAllConsultations(doctor_id) {
+	return axios.get(`http://localhost:3000/api/consultations/${doctor_id}`).then((res) => {
 		return res.data;
 	});
 }

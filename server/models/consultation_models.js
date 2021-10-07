@@ -18,6 +18,15 @@ function create(title, relationship_id) {
 
 //probs a good idea to make sure that we double check if it is the right user requesting the delet, you know for security reasons
 //but that will probably be done on the actual api endpoint
+
+function getAllConsultations(relationship_id) {
+	let sql = "SELECT * FROM consultation WHERE relationship_id = $1";
+
+	return dbQuery(sql, [relationship_id]).then((res) => {
+		return res.rows;
+	});
+}
+
 function deleteSingle(consultationId) {
 	//check that a id is actually passed in cause I feel like people could do some weird shit
 	//and delete everything which would suck
@@ -50,4 +59,5 @@ module.exports = {
 	getSections,
 	deleteSingle,
 	create,
+	getAllConsultations,
 };

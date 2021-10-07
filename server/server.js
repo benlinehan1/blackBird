@@ -180,6 +180,14 @@ app.get("/api/patients/:id", (req, res) => {
 
 // find patient by id ^
 
+app.get("/api/consultations/:id", (req, res) => {
+	let relationship_id = req.params.id;
+
+	consultationModel.getAllConsultations(relationship_id).then((dbRes) => {
+		res.json({ consultations: dbRes });
+	});
+});
+
 app.get("/api/consultation/:id", (req, res) => {
 	consultationModel.getSingle(req.params.id).then((dbRes) => {
 		res.json({ message: dbRes });

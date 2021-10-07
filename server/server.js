@@ -159,7 +159,7 @@ app.get("/api/patients", (req, res) => {
 // ^ find all patients
 
 app.get("/api/patients/:id", (req, res) => {
-	patientsModel.patientsGetId(req.body.patientId).then((dbRes) => {
+	patientsModel.patientsGetId(req.params.patientId).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });

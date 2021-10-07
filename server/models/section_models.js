@@ -1,8 +1,10 @@
 const { dbQuery } = require("../lib/dbQuery.js");
 
 function sectionCreate(consultationId, title, content) {
-	let sql = "insert into section (consultation_id, title, content) values ($1,$2,$3);";
-	return dbQuery(sql, [consultationId, title, content]);
+	let sql = "insert into section (consultation_id, title, content) values ($1,$2,$3) returning *;";
+	return dbQuery(sql, [consultationId, title, content]).then((dbRes) => {
+		return dbRes.rows;
+	});
 }
 
 function sectionPatch(consultation_id, title, content) {
@@ -15,10 +17,13 @@ function sectionPatch(consultation_id, title, content) {
 
 function sectionGetByConsulId(consultationId) {
 	let sql = "select * from section where consultation_id = $1;";
-	return dbQuery(sql, [consultationId]);
+	return dbQuery(sql, [consultationId]).then((dbRes) => {
+		return dbRes.rows;
+	});
 }
 
 module.exports = {
 	sectionCreate,
 	sectionGetByConsulId,
+	sectionPatch,
 };

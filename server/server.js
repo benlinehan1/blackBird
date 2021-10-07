@@ -92,7 +92,7 @@ app.get("/home", (req, res) => {
 
 /* --- API ROUTES --- */
 app.get("/api/", (req, res) => {
-	res.json(statusCodes.success());
+	res.json({ status: "success" });
 });
 
 app.get("/api/relationships", (req, res) => {
@@ -146,7 +146,7 @@ app.get("/api/currentuser", (req, res) => {
 
 		res.json({ user_id: currentuser_id });
 	} else {
-		res.json({ message: "log in coward" });
+		res.json({ user_id: "log in error" });
 	}
 });
 
@@ -166,12 +166,16 @@ app.get("/api/patients/:id", (req, res) => {
 
 // find patient by id ^
 
-app.get("/api/consultations/:id", (req, res) => {
-	let result = consultationModel.getWithSections(req.params.id);
+app.get("/api/consultation/:id", (req, res) => {
+	consultationModel.getSingle(req.params.id).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
 
-	console.log(result);
-
-	res.send({});
+app.get("/api/consultationsections/:id", (req, res) => {
+	consultationModel.getSections(req.params.id).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
 });
 
 app.post("/api/consultations", (req, res) => {
@@ -194,6 +198,12 @@ app.get("/api/section/:id", (req, res) => {
 
 app.post("/api/section", (req, res) => {
 	sectionModel.sectionCreate(req.body.consultationId, req.body.title, req.body.content).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
+
+app.patch("/api/section", (req, res) => {
+	sectionModel.sectionPatch(req.body.consultation_id, req.body.title, req, body.content).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });

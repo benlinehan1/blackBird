@@ -1,0 +1,70 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: aliceblue;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+}
+
+.header {
+	background-color: rgb(134, 230, 217);
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.component {
+	border: 2px solid #6f6f6f;
+	background-color: #f1f1f1;
+}
+
+.consultation {
+	margin: auto;
+	margin-top: 20px;
+	width: 800px;
+	height: max-content;
+}
+
+.consultations {
+	flex: 1 1 0;
+	transition: 1s;
+	height: fit-content;
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	text-align: center;
+}
+
+.consultations_holder {
+	background-color: rgb(238, 238, 169);
+}
+
+.consultation_link {
+	margin: 5px;
+	margin-top: 0px;
+	height: 200px;
+	width: 200px;
+}
+
+.rounded {
+	border-radius: 25px;
+}
+
+.sidebar_container {
+	background-color: rgb(168, 168, 168);
+	height: 100vh;
+}
+
+.sidebar {
+	min-width: 30%;
+
+	height: max-content;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+.doctor_selector {
+	min-height: 10vh;
+}

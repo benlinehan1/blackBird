@@ -4,11 +4,17 @@
 	"description": "",
 	"main": "server.js",
 	"dependencies": {
+		"auth0": "^2.36.2",
+		"axios": "^0.22.0",
+		"dotenv": "^10.0.0",
 		"express": "^4.17.1",
-		"pg": "^8.7.1"
+		"express-openid-connect": "^2.5.1",
+		"pg": "^8.7.1",
+		"request": "^2.88.2",
+		"tingle.js": "^0.16.0"
 	},
 	"devDependencies": {
-		"nodemon": "^2.0.12"
+		"nodemon": "^2.0.13"
 	},
 	"scripts": {
 		"start": "nodemon server/server.js"

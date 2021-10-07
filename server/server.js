@@ -128,6 +128,16 @@ app.get("/api/relationships/patient/:patientId", (req, res) => {
 		});
 	});
 });
+app.get("/api/relationships/pending/:doctorId", (req, res) => {
+	relationshipsModel.getAllPendingPatients(req.params.doctorId).then((dbRes) => {
+		console.log(dbRes);
+		console.log(req.params.doctorId);
+		res.json({ message: dbRes }).catch((err) => {
+			console.log(err);
+		});
+	});
+});
+
 //^ adds relationship
 
 app.delete("/api/relationships/:id", (req, res) => {

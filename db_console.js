@@ -19,10 +19,8 @@ const section = require("./server/models/section_models.js");
 
 // doctor.doctorCreate("2", "Sarah Leah", "Psychiatrist", 2);
 
-// patient.patientCreate("2", "Nic Juncal");
+patient.patientCreate("10", "Shakira");
 
 // consultation.create("consultation", 4);
 
 // section.sectionCreate("1", "Our Consultation", "Wow so cool test");
-
-relationship.create("1", "1");

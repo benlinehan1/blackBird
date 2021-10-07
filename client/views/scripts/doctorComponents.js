@@ -4,6 +4,15 @@ const consultationDiv = document.querySelector(".consultations");
 const sideBar = document.querySelector(".sidebar");
 const adder = document.querySelector(".adder");
 
+truePatientById().then((res) => {
+	let patients = res.data.message;
+	console.log(res);
+	patients.forEach((patient) => {
+		component("PatientSelector", { name: patient.full_name }, 1).then((comp) => {
+			comp.classList.add("patient_selector");
+			sideBar.appendChild(comp);
+
+
 getAllConsultations().then((res) => {
 	let consultations = res.consultations;
 
@@ -20,7 +29,6 @@ getAllConsultations().then((res) => {
 		});
 	});
 });
-
 adder.addEventListener("click", () => {
 	adderModal.open();
 });
@@ -64,9 +72,3 @@ var modal = new tingle.modal({
 });
 
 //-------------------------------------------------------------------------------------------------------------
-
-component("PatientSelector", {}, 1).then((comp) => {
-	comp.classList.add("patient_selector");
-	sideBar.appendChild(comp);
-	return;
-});

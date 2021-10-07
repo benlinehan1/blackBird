@@ -1,0 +1,17 @@
+.patient_selector {
+	height: 50px;
+	padding-left: 20px;
+	transition: 0.2s;
+	background-color: aliceblue;
+}
+
+.patient_selector > h3 {
+	margin-top: 10px;
+}
+
+.patient_selector:hover {
+	cursor: pointer;
+	background-color: rgb(215, 227, 238);
+	position: relative;
+	box-shadow: -1px 10px 15px 0px rgba(0, 0, 0, 0.11);
+}

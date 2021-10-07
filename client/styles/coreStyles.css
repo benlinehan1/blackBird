@@ -69,3 +69,10 @@ body {
 .doctor_selector {
 	min-height: 10vh;
 }
+
+.adder {
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: rgb(99, 190, 206);
+}

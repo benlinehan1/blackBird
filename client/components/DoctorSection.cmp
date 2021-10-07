@@ -1,0 +1,7 @@
+<div class="section_container">
+	<h2>{:title}</h2>
+	<div class="section_content_holder">
+		<p>{:content}</p>
+		<p class="comment"></p>
+	</div>
+</div>

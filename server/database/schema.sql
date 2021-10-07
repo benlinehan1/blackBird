@@ -10,13 +10,13 @@ create table relationships (
   id serial primary key,
   patient_id text,
   doctor_id text,
-  pending boolean default 'false'
+  pending boolean default 'true'
 );
 create table patients (
   id text,
   full_name text
 );
-//added section id
+
 create table comment (
   id serial primary key,
   patient_id int,
@@ -42,4 +42,3 @@ create table confirmation (
   date timestamp,
   confirmation_code text
 );
-INSERT INTO doctors (full_name, type, credentials) values (keegan pratt, )

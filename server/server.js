@@ -92,7 +92,7 @@ app.get("/home", (req, res) => {
 
 /* --- API ROUTES --- */
 app.get("/api/", (req, res) => {
-	res.json(statusCodes.success());
+	res.json({ status: "success" });
 });
 
 app.get("/api/relationships", (req, res) => {

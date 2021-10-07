@@ -135,7 +135,7 @@ app.get("/api/doctors", (req, res) => {
 // return * doctors ^
 
 app.get("/api/doctors/:id", (req, res) => {
-	doctorModel.doctorGetAllById(req.body.doctorId).then((dbRes) => {
+	doctorModel.doctorGetAllById(req.params.id).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });
@@ -161,7 +161,8 @@ app.get("/api/patients", (req, res) => {
 // ^ find all patients
 
 app.get("/api/patients/:id", (req, res) => {
-	patientsModel.patientsGetId(req.params.patientId).then((dbRes) => {
+  
+patientsModel.patientsGetId(req.params.patientId).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });

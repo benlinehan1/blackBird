@@ -1,5 +1,3 @@
-const axios = require("axios");
-
 function userID() {
 	// function is assync
 	return axios.get("http://localhost:3000/api/currentuser").then((res) => {
@@ -23,7 +21,16 @@ function doctorById() {
 	});
 	// function is assync
 }
+
+function getAllConsultations() {
+	return axios.get(`http://localhost:3000/api/consultations/${4}`).then((res) => {
+		return res.data;
+	});
+}
+
 //id.user_id have to change the interpolation to get the data from the api
 doctorById().then((res) => {
 	console.log(res);
 });
+
+export default getAllConsultations;

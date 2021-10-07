@@ -1,9 +1,9 @@
 import component from "./../../lib/cmpParse.js";
-
-import truePatientById from "../../lib/userDisplay.js";
+import getAllConsultations from "./../../lib/doctorDisplay.js";
 const consultationDiv = document.querySelector(".consultations");
 const sideBar = document.querySelector(".sidebar");
 const adder = document.querySelector(".adder");
+
 truePatientById().then((res) => {
 	let patients = res.data.message;
 	console.log(res);
@@ -11,6 +11,20 @@ truePatientById().then((res) => {
 		component("PatientSelector", { name: patient.full_name }, 1).then((comp) => {
 			comp.classList.add("patient_selector");
 			sideBar.appendChild(comp);
+
+
+getAllConsultations().then((res) => {
+	let consultations = res.consultations;
+
+	consultations.forEach((consultation) => {
+		component("ConsultationLink", { title: consultation.title, date: consultation.date }, 0).then((comp) => {
+			comp.classList.add("component");
+			comp.classList.add("consultation_link");
+			comp.classList.add("rounded");
+			comp.addEventListener("click", (e) => {
+				modal.open();
+			});
+			consultationDiv.appendChild(comp);
 			return;
 		});
 	});
@@ -55,17 +69,6 @@ var modal = new tingle.modal({
 		return true; // close the modal
 		return false; // nothing happens
 	},
-});
-
-component("ConsultationLink", {}, 0).then((comp) => {
-	comp.classList.add("component");
-	comp.classList.add("consultation_link");
-	comp.classList.add("rounded");
-	comp.addEventListener("click", (e) => {
-		modal.open();
-	});
-	consultationDiv.appendChild(comp);
-	return;
 });
 
 //-------------------------------------------------------------------------------------------------------------

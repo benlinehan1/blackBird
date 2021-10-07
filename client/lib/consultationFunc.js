@@ -1,5 +1,3 @@
-const axios = require("axios");
-
 function getSingleConsultation() {
 	axios
 		.get(`http://localhost:3000/api/consultation/${relationship_id}`)
@@ -13,8 +11,8 @@ function getSingleConsultation() {
 		});
 }
 
-function getSectionByConsultation() {
-	axios
+export function getSectionsByConsultation(consultation_id) {
+	return axios
 		.get(`http://localhost:3000/api/section/${consultation_id}`)
 		.then((res) => {
 			console.log(res.data);

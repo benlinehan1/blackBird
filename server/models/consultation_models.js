@@ -45,7 +45,8 @@ function getSections(id) {
 }
 
 module.exports = {
-	getWithSections,
+	getSingle,
+	getSections,
 	deleteSingle,
 	create,
 };

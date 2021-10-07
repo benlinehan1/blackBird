@@ -49,3 +49,10 @@ component("Section", {}, 4).then((comp) => {
 	document.body.appendChild(comp);
 	return;
 });
+
+component("DoctorSelector", {}, 5).then((comp) => {
+	comp.classList.add("component");
+	comp.classList.add("doctorSelector");
+	document.body.appendChild(comp);
+	return;
+});

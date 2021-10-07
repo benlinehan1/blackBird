@@ -22,7 +22,13 @@ function patientById() {
 			return res.data.message;
 		});
 	});
-	// function is assync
+}
+
+function truePatientById(doctor_id) {
+	return axios.get(`http://localhost:3000/api/relationships/confirmed/${doctor_id}`).then((res) => {
+		console.log(res);
+		return res;
+	});
 }
 //id.user_id have to change the interpolation to get the data from the api
 patientById().then((res) => {

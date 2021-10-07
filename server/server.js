@@ -166,12 +166,16 @@ app.get("/api/patients/:id", (req, res) => {
 
 // find patient by id ^
 
-app.get("/api/consultations/:id", (req, res) => {
-	let result = consultationModel.getWithSections(req.params.id);
+app.get("/api/consultation/:id", (req, res) => {
+	consultationModel.getSingle(req.params.id).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
+});
 
-	console.log(result);
-
-	res.send({});
+app.get("/api/consultationsections/:id", (req, res) => {
+	consultationModel.getSections(req.params.id).then((dbRes) => {
+		res.json({ message: dbRes });
+	});
 });
 
 app.post("/api/consultations", (req, res) => {

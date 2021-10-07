@@ -1,4 +1,4 @@
 <div class="section_container">
-	<h2>Section Title</h2>
-	<p>Section Content</p>
+	<h2>{:title}</h2>
+	<p>{:content}</p>
 </div>

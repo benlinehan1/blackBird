@@ -1,11 +1,14 @@
 import component from "./../../lib/cmpParse.js";
 import getAllConsultations from "./../../lib/patientConsultation.js";
-import { getSectionsByConsultation } from "./../../lib/consultationFunc";
+import { getSectionsByConsultation } from "./../../lib/consultationFunc.js";
 const consultationDiv = document.querySelector(".consultations");
 const sideBar = document.querySelector(".sidebar");
 
 //We need to create a seed file desperatly
+
+//-------------------
 //ALSO NEED TO CHUCK THIS ENTIRE THING INTO A FUNCTION SO WE CAN CALL IT WHHEN WE WANT TO DO
+//----------------
 getAllConsultations().then((res) => {
 	// console.log(res.consultations);
 	let consultations = res.consultations;
@@ -18,21 +21,26 @@ getAllConsultations().then((res) => {
 			comp.addEventListener("click", (e) => {
 				component("PatientBaseConsult", {}, 1).then((comp) => {
 					getSectionsByConsultation(consultation.id).then((sections) => {
+						let sectionDiv = comp.querySelector(".section");
+						console.log(sectionDiv);
+						sections = sections.message;
 						sections.forEach((section) => {
 							console.log(section);
 							component("PatientSection", { title: section.title, content: section.content }, 1).then(
 								(comp2) => {
-									comp.appendChild(comp2);
-									console.log(comp.innerHTML);
+									console.log("append");
+									sectionDiv.appendChild(comp2);
+									modal.setContent(comp.innerHTML);
 								}
 							);
 						});
-						modal.setContent(comp.innerHTML);
+
+						modal.open();
+						console.log(modal.getContent().innerHTML);
 					});
 					comp.classList.add("component");
 					comp.classList.add("doctor_selector");
 				});
-				modal.open();
 			});
 			consultationDiv.appendChild(comp);
 			return;

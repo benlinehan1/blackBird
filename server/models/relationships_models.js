@@ -62,7 +62,7 @@ function getAllDoctorsOfPatients(doctor_id) {
 }
 
 function getAllPatientsOfDoctors(patient_id) {
-	let sql = `select patients.* from relationships join patients on relationships.patient_id = patients.id (where patient_id = $1 and pending = false)`;
+	let sql = `select patients.* from relationships join patients on relationships.patient_id = patients.id where (patient_id = $1 and pending = false)`;
 
 	return dbQuery(sql, [patient_id]).then((dbRes) => {
 		return dbRes.rows;
@@ -74,8 +74,8 @@ function getStatus(id) {
 }
 
 function getAllPendingPatients(doctor_id) {
-	let sql = `select patients.* from relationships where patient_id = $1 and pending = true join patients on relationships.patient_id = patients.id`;
-	return dbQuery(sql, [patient_id]).then((dbRes) => {
+	let sql = `select patients.* from relationships join patients on relationships.patient_id = patients.id where (patient_id = $1 and pending = true)`;
+	return dbQuery(sql, [doctor_id]).then((dbRes) => {
 		return dbRes.rows;
 	});
 }

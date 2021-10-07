@@ -9,7 +9,8 @@ create table doctors (
 create table relationships (
   id serial primary key,
   patient_id text,
-  doctor_id text
+  doctor_id text,
+  pending boolean default 'false'
 );
 create table patients (
   id text,

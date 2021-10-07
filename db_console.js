@@ -24,5 +24,3 @@ patient.patientCreate("10", "Shakira");
 // consultation.create("consultation", 4);
 
 // section.sectionCreate("1", "Our Consultation", "Wow so cool test");
-
-relationship.create("10", "3");

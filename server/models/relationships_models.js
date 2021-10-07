@@ -29,13 +29,15 @@ function pending(id) {
 }
 
 function confirm(id) {
-	let pending = pending(id);
+	id = id.toString();
 
-	if (pending === false) {
-		console.log("in progress");
-	} else {
-		return (sql = `UPDATE relationships SET pending = '${pending}'`);
-	}
+	console.log(`This is the` + id);
+	let sql = `UPDATE relationships SET pending = true WHERE doctor_id = $1 returning *`;
+
+	return dbQuery(sql, [id]).then((dbRes) => {
+		console.log(dbRes);
+		return dbRes.rows[0];
+	});
 }
 
 function remove(id) {

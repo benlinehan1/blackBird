@@ -1,3 +1,5 @@
+require("dotenv").config({ path: `${__dirname}/../dev.env` });
+
 function email(email, confirmation_code) {
 	const sgMail = require("@sendgrid/mail");
 	sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -15,7 +17,7 @@ function email(email, confirmation_code) {
 	return sgMail
 		.send(msg)
 		.then(() => {
-			console.log("Email sent");
+			return { message: "email sent" };
 		})
 		.catch((error) => {
 			console.error(error);

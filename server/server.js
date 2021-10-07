@@ -14,7 +14,7 @@ const doctorModel = require("./models/doctor_models");
 const patientsModel = require("./models/patients_models");
 const relationshipsModel = require("./models/relationships_models");
 const sectionModel = require("./models/section_models");
-const confirmationCode = require("./lib/confirmationCode");
+const { confirmationCode } = require("./lib/confirmationCode");
 
 //Server config
 const path = require("path");
@@ -260,9 +260,34 @@ app.post("/api/email/:email/:doctor_id", (req, res) => {
 	let confirmation_code = confirmationCode();
 
 	email(req.params.email, confirmation_code).then((response) => {
-		response.json({ message: "Email requested. Please allow 24 hours." });
+		console.log(response);
+		res.json({ message: "Email requested. Please allow 24 hours." });
 	});
 	confirmationModel.confirmationCreate(req.params.doctor_id, confirmation_code);
+});
+
+app.patch("/api/confirmrelationship/:code", (req, res) => {
+	if (req.oidc.isAuthenticated()) {
+		// currentuser_id = req.oidc.user.sub();
+		let currentuser_id = req.oidc.user.sub();
+
+		let confirmation_code = req.params.code;
+
+		confirmationModel.confirmationGetByConfId(confirmation_code).then((dbRes) => {
+			console.log(dbRes);
+			var doctor_id = dbRes[0].doctor_id;
+			console.log(doctor_id);
+			relationshipsModel.confirm(doctor_id).then((dbRes) => {
+				// confirmationModel.confirmationDeleteByConfId(dbRes.rows[0])
+				dbRes;
+				confirmationModel.confirmationDeleteByConfId(confirmation_code).then((dbRes) => {
+					res.json({ message: "confirmed delete" });
+				});
+			});
+		});
+	} else {
+		res.json({ message: "no" });
+	}
 });
 
 /* --- SERVER LISTEN --- */

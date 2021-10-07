@@ -1,6 +1,35 @@
 import component from "./../../lib/cmpParse.js";
+import getAllConsultations from "./../../lib/patientConsultation.js";
 const consultationDiv = document.querySelector(".consultations");
 const sideBar = document.querySelector(".sidebar");
+
+getAllConsultations().then((res) => {
+	// console.log(res.consultations);
+
+	let consultations = res.consultations;
+
+	consultations.forEach((consultation) => {
+		component("ConsultationLink", { title: consultation.title, date: consultation.date }, 0).then((comp) => {
+			comp.classList.add("component");
+			comp.classList.add("consultation_link");
+			comp.classList.add("rounded");
+			comp.addEventListener("click", (e) => {
+				component("PatientBaseConsult", {}, 1).then((comp) => {
+					comp.classList.add("component");
+					comp.classList.add("doctor_selector");
+					component("PatientSection", {}, 1).then((comp2) => {
+						comp.appendChild(comp2);
+						console.log(comp.innerHTML);
+						modal.setContent(comp.innerHTML);
+					});
+				});
+				modal.open();
+			});
+			consultationDiv.appendChild(comp);
+			return;
+		});
+	});
+});
 
 var modal = new tingle.modal({
 	stickyFooter: false,
@@ -19,26 +48,6 @@ var modal = new tingle.modal({
 		return true; // close the modal
 		return false; // nothing happens
 	},
-});
-
-component("ConsultationLink", {}, 0).then((comp) => {
-	comp.classList.add("component");
-	comp.classList.add("consultation_link");
-	comp.classList.add("rounded");
-	comp.addEventListener("click", (e) => {
-		component("PatientBaseConsult", {}, 1).then((comp) => {
-			comp.classList.add("component");
-			comp.classList.add("doctor_selector");
-			component("PatientSection", {}, 1).then((comp2) => {
-				comp.appendChild(comp2);
-				console.log(comp.innerHTML);
-				modal.setContent(comp.innerHTML);
-			});
-		});
-		modal.open();
-	});
-	consultationDiv.appendChild(comp);
-	return;
 });
 
 //---------------------------------------------------------------------------------------------

@@ -1,7 +1,25 @@
 import component from "./../../lib/cmpParse.js";
+import getAllConsultations from "./../../lib/doctorDisplay.js";
 const consultationDiv = document.querySelector(".consultations");
 const sideBar = document.querySelector(".sidebar");
 const adder = document.querySelector(".adder");
+
+getAllConsultations().then((res) => {
+	let consultations = res.consultations;
+
+	consultations.forEach((consultation) => {
+		component("ConsultationLink", { title: consultation.title, date: consultation.date }, 0).then((comp) => {
+			comp.classList.add("component");
+			comp.classList.add("consultation_link");
+			comp.classList.add("rounded");
+			comp.addEventListener("click", (e) => {
+				modal.open();
+			});
+			consultationDiv.appendChild(comp);
+			return;
+		});
+	});
+});
 
 adder.addEventListener("click", () => {
 	adderModal.open();
@@ -43,17 +61,6 @@ var modal = new tingle.modal({
 		return true; // close the modal
 		return false; // nothing happens
 	},
-});
-
-component("ConsultationLink", {}, 0).then((comp) => {
-	comp.classList.add("component");
-	comp.classList.add("consultation_link");
-	comp.classList.add("rounded");
-	comp.addEventListener("click", (e) => {
-		modal.open();
-	});
-	consultationDiv.appendChild(comp);
-	return;
 });
 
 //-------------------------------------------------------------------------------------------------------------

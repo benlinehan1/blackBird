@@ -6,7 +6,6 @@ create table doctors (
   type text,
   credentials int
 );
-
 create table relationships (
   id serial primary key,
   patient_id text,
@@ -36,12 +35,10 @@ create table section (
   title text,
   content text
 );
-
 create table confirmation (
   id serial primary key,
   doctor_id int,
   date timestamp,
   confirmation_code text
 );
-
 INSERT INTO doctors (full_name, type, credentials) values (keegan pratt, )

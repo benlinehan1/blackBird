@@ -133,7 +133,7 @@ app.get("/api/doctors", (req, res) => {
 // return * doctors ^
 
 app.get("/api/doctors/:id", (req, res) => {
-	doctorModel.doctorGetAllById(req.body.doctorId).then((dbRes) => {
+	doctorModel.doctorGetAllById(req.params.id).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });

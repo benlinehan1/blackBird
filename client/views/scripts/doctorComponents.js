@@ -1,5 +1,5 @@
 import component from "./../../lib/cmpParse.js";
-const consultationDiv = document.querySelector(".consultations_hp");
+const consultationDiv = document.querySelector(".consultations");
 
 var modal = new tingle.modal({
 	stickyFooter: false,

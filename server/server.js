@@ -140,6 +140,16 @@ app.get("/api/doctors/:id", (req, res) => {
 
 // ^ gets doctor by id
 
+app.get("/api/currentuser", (req, res) => {
+	if (req.oidc.isAuthenticated()) {
+		currentuser_id = req.oidc.user.sub;
+
+		res.json({ user_id: currentuser_id });
+	} else {
+		res.json({ message: "log in coward" });
+	}
+});
+
 app.get("/api/patients", (req, res) => {
 	patientsModel.patientsGetAll().then((dbRes) => {
 		res.json({ message: dbRes });

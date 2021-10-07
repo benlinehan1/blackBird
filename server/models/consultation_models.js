@@ -29,19 +29,20 @@ function deleteSingle(consultationId) {
 	});
 }
 
-// function consultationPatch(title, )
 
-function getWithSections(id) {
+function getSingle(id) {
 	let getModelSql = "SELECT * from consultation WHERE id = $1";
+	return dbQuery(getModelSql, [id]).then((res) => {
+		returnObject.consultation = res.rows;
+	});
+}
+
+function getSections(id) {
 	let getSectionsSql =
 		"SELECT * from section INNER JOIN comment ON section.id = comment.section_id WHERE section.consultation_id = $1";
-	let returnObject = {};
+	dbQuery(getSectionsSql, [id]).then((res) => {
+		returnObject.section = res.rows;
 
-	dbQuery(getModelSql, [id]).then((res) => {
-		returnObject.consultation = res.rows;
-		dbQuery(getSectionsSql, [id]).then((res) => {
-			returnObject.section = res.rows;
-		});
 	});
 	console.log(returnObject);
 }

@@ -1,3 +1,4 @@
+
 require("dotenv").config({ path: `${__dirname}/../dev.env` });
 
 function email(email, confirmation_code) {
@@ -18,6 +19,7 @@ function email(email, confirmation_code) {
 		.send(msg)
 		.then(() => {
 			return { message: "email sent" };
+
 		})
 		.catch((error) => {
 			console.error(error);

@@ -6,6 +6,9 @@ import { getCommentsBySection } from "./../../lib/commentsFunc.js";
 const consultationDiv = document.querySelector(".consultations");
 const sideBar = document.querySelector(".sidebar");
 const adder = document.querySelector(".adder");
+const addForm = document.querySelector(".add-confirm-form");
+const addInput = document.querySelector(".add-confirm-input");
+const addBtn = document.querySelector(".add-confirm-btn");
 
 truePatientById().then((res) => {
 	let patients = res.data.message;

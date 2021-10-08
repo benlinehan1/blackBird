@@ -291,7 +291,6 @@ app.post("/api/comments", (req, res) => {
 
 app.post("/api/email/:email/:doctor_id", (req, res) => {
 	let confirmation_code = confirmationCode();
-
 	email(req.params.email, confirmation_code).then((response) => {
 		console.log(response);
 		res.json({ message: "Email requested. Please allow 24 hours." });

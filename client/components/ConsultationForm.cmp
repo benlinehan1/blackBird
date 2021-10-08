@@ -1,6 +1,12 @@
-<h1>Add Consultation</h1>
-<p class="section">Hello World</p>
+<input class="title_input"></input>
 
-<button class="new-section-btn">Add New Section</button>
+<div class="consultation_container">
 
-<button class="submit">Submit</button>
+    <div class="section_container">
+        
+    </div>
+
+    <button class="add_new_section">Add Section</button>
+</div>
+
+<button class="submit_consultation">Submit</button>

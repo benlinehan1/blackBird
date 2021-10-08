@@ -98,7 +98,7 @@ app.get("/api/", (req, res) => {
 });
 
 app.get("/api/relationships", (req, res) => {
-	relationshipsModel.all().then((dbRes) => {
+	relationshipsModel.all(req.params.doctor_id, req.params.patient_id).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });
@@ -115,8 +115,8 @@ app.post("/api/relationships", (req, res) => {
 		res.json({ message: "added", relationship: dbRes });
 	});
 });
-app.get("/api/relationships/doctor/:doctorId", (req, res) => {
-	relationshipsModel.getAllDoctorsOfPatients(req.params.doctorId).then((dbRes) => {
+app.get("/api/relationships/doctor/:patientId", (req, res) => {
+	relationshipsModel.getAllDoctorsOfPatients(req.params.patientId).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });
@@ -203,6 +203,15 @@ app.get("/api/consultations/:id", (req, res) => {
 	let relationship_id = req.params.id;
 
 	consultationModel.getAllConsultations(relationship_id).then((dbRes) => {
+		res.json({ consultations: dbRes });
+	});
+});
+
+app.get("/api/search/consultations", (req, res) => {
+	let patient_id = req.query.patient_id;
+	let doctor_id = req.query.doctor_id;
+
+	consultationModel.getConsultationByPatientId(patient_id, doctor_id).then((dbRes) => {
 		res.json({ consultations: dbRes });
 	});
 });

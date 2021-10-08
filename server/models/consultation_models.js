@@ -27,6 +27,15 @@ function getAllConsultations(relationship_id) {
 	});
 }
 
+function getConsultationByPatientId(patient_id, doctor_id) {
+	let sql =
+		"SELECT * from consultation join relationships on relationship_id = relationships.id WHERE patient_id = $1 AND doctor_id = $2";
+
+	return dbQuery(sql, [patient_id, doctor_id]).then((res) => {
+		return res.rows;
+	});
+}
+
 function deleteSingle(consultationId) {
 	//check that a id is actually passed in cause I feel like people could do some weird shit
 	//and delete everything which would suck
@@ -60,4 +69,5 @@ module.exports = {
 	deleteSingle,
 	create,
 	getAllConsultations,
+	getConsultationByPatientId,
 };

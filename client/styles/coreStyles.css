@@ -7,15 +7,15 @@ body {
 }
 
 .header {
-	background-color: rgb(134, 230, 217);
+	background-color: rgb(118, 184, 223);
 	padding-top: 40px;
 	padding-bottom: 40px;
 }
 
 .component {
 	margin: 20px;
-	border: 2px solid #6f6f6f;
-	background-color: #f1f1f1;
+	border: 2px solid #ffffff;
+	background-color: #3b3b3b;
 }
 
 .consultation {
@@ -38,10 +38,25 @@ body {
 }
 
 .consultations_holder {
-	background-color: rgb(238, 238, 169);
+	background-color: rgb(247, 247, 247);
 }
 
 .consultation_link {
+	cursor: pointer;
+	transition: background-color 0.5s;
+	box-sizing: border-box;
+	padding: 10px;
+	background-color: rgb(118, 184, 223);
+	margin: 5px;
+	margin-top: 0px;
+	height: 200px;
+	width: 200px;
+}
+
+.consultation_link:hover {
+	padding: 9px;
+	background-color: rgb(247, 247, 247);
+	border: 3px solid rgb(118, 184, 223);
 	margin: 5px;
 	margin-top: 0px;
 	height: 200px;
@@ -49,11 +64,11 @@ body {
 }
 
 .rounded {
-	border-radius: 25px;
+	border-radius: 0px;
 }
 
 .sidebar_container {
-	background-color: rgb(168, 168, 168);
+	background-color: #e7e9ec;
 	height: 100vh;
 }
 
@@ -74,5 +89,9 @@ body {
 	text-align: center;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	background-color: rgb(99, 190, 206);
+	background-color: rgb(122, 176, 212);
+}
+
+.comment_post {
+	height: 40px;
 }

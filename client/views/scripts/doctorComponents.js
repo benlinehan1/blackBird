@@ -1,6 +1,7 @@
 import component from "./../../lib/cmpParse.js";
 import getAllConsultations from "./../../lib/doctorDisplay.js";
 import truePatientById from "./../../lib/userDisplay.js";
+import doctorSidebar from "./../../lib/hpSidebar.js";
 import { getSectionsByConsultation } from "./../../lib/consultationFunc.js";
 import { getCommentsBySection } from "./../../lib/commentsFunc.js";
 const consultationDiv = document.querySelector(".consultations");
@@ -18,9 +19,33 @@ truePatientById().then((res) => {
 		component("PatientSelector", { name: patient.full_name }, 1).then((comp) => {
 			comp.classList.add("patient_selector");
 			sideBar.appendChild(comp);
+			comp.addEventListener('click', () => {
+				return axios.get(`/api/search/consultations?patient_id=${patient.id}&doctor_id=1`).then((newRes) => {
+					let clickNew = newRes.data.consultations[0];
+
+					if (clickNew == undefined) {
+						let consultationContainer = document.querySelector('.consultations')
+
+						consultationContainer.innerHTML = ""
+					}
+					else {
+						let relationship_id = clickNew.relationship_id;
+
+						generateConsultations(relationship_id);
+					}
+				})
+			})
 		});
 	});
 });
+
+// doctorSidebar().then((res) => {
+// 	let patients = res.message;
+
+// 	patients.forEach((patient) => {
+
+// 	})
+// })
 
 getAllConsultations().then((res) => {
 	let consultations = res.consultations;
@@ -60,6 +85,10 @@ var modal = new tingle.modal({
 
 //-------------------------------------------------------------------------------------------------------------
 function generateConsultations(doctor_id) {
+	let consultationContainer = document.querySelector('.consultations')
+
+	consultationContainer.innerHTML = ""
+
 	getAllConsultations(doctor_id).then((res) => {
 		// console.log(res.consultations);
 		let consultations = res.consultations;
@@ -111,4 +140,50 @@ function generateConsultations(doctor_id) {
 		});
 	});
 }
-generateConsultations(1);
+
+
+var addNewBtn = document.querySelector('.add_new_consultation')
+
+addNewBtn.addEventListener('click', () => {
+
+	component("ConsultationForm", {}).then((comp) => {
+		hotPopUp.setContent(comp)
+
+		console.log(comp)
+
+		var sectionBtn = document.querySelector('.add_new_section')
+
+		sectionBtn.addEventListener('click', () => {
+			var sectionContainer = comp.querySelector('.section_container')
+
+			component("HPAddSection", {}).then((comp2) => {
+				sectionContainer.appendChild(comp2)
+
+				hotPopUp.setContent(comp)
+			})
+		})
+	})
+	
+
+
+	hotPopUp.open()
+})
+
+var hotPopUp = new tingle.modal({
+	stickyFooter: false,
+	closeMethods: ["overlay", "button", "escape"],
+	closeLabel: "Close",
+	cssClass: ["custom-class-1", "custom-class-2"],
+	onOpen: function () {
+		console.log("modal open");
+	},
+	onClose: function () {
+		console.log("modal closed");
+	},
+	beforeClose: function () {
+		// here's goes some logic
+		// e.g. save content before closing the modal
+		return true; // close the modal
+		return false; // nothing happens
+	},
+});

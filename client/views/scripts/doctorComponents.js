@@ -4,12 +4,20 @@ import truePatientById from "./../../lib/userDisplay.js";
 import doctorSidebar from "./../../lib/hpSidebar.js";
 import { getSectionsByConsultation } from "./../../lib/consultationFunc.js";
 import { getCommentsBySection } from "./../../lib/commentsFunc.js";
+import confirmation from "./../../lib/confirmation.js";
 const consultationDiv = document.querySelector(".consultations");
 const sideBar = document.querySelector(".sidebar");
 const adder = document.querySelector(".adder");
 const addForm = document.querySelector(".add-confirm-form");
 const addInput = document.querySelector(".add-confirm-input");
 const addBtn = document.querySelector(".add-confirm-btn");
+
+function sendCodeToPatient(e) {
+	e.preventDefault();
+	confirmation("1", addInput.value); // "1" is hardcoded for the doctor ID
+	addInput.value = "";
+}
+addForm.addEventListener("submit", sendCodeToPatient);
 
 truePatientById().then((res) => {
 	let patients = res.data.message;
@@ -19,22 +27,21 @@ truePatientById().then((res) => {
 		component("PatientSelector", { name: patient.full_name }, 1).then((comp) => {
 			comp.classList.add("patient_selector");
 			sideBar.appendChild(comp);
-			comp.addEventListener('click', () => {
+			comp.addEventListener("click", () => {
 				return axios.get(`/api/search/consultations?patient_id=${patient.id}&doctor_id=1`).then((newRes) => {
 					let clickNew = newRes.data.consultations[0];
 
 					if (clickNew == undefined) {
-						let consultationContainer = document.querySelector('.consultations')
+						let consultationContainer = document.querySelector(".consultations");
 
-						consultationContainer.innerHTML = ""
-					}
-					else {
+						consultationContainer.innerHTML = "";
+					} else {
 						let relationship_id = clickNew.relationship_id;
 
 						generateConsultations(relationship_id);
 					}
-				})
-			})
+				});
+			});
 		});
 	});
 });
@@ -85,9 +92,9 @@ var modal = new tingle.modal({
 
 //-------------------------------------------------------------------------------------------------------------
 function generateConsultations(doctor_id) {
-	let consultationContainer = document.querySelector('.consultations')
+	let consultationContainer = document.querySelector(".consultations");
 
-	consultationContainer.innerHTML = ""
+	consultationContainer.innerHTML = "";
 
 	getAllConsultations(doctor_id).then((res) => {
 		// console.log(res.consultations);
@@ -141,33 +148,29 @@ function generateConsultations(doctor_id) {
 	});
 }
 
+var addNewBtn = document.querySelector(".add_new_consultation");
 
-var addNewBtn = document.querySelector('.add_new_consultation')
-
-addNewBtn.addEventListener('click', () => {
-
+addNewBtn.addEventListener("click", () => {
 	component("ConsultationForm", {}).then((comp) => {
-		hotPopUp.setContent(comp)
+		hotPopUp.setContent(comp);
 
-		console.log(comp)
+		console.log(comp);
 
-		var sectionBtn = document.querySelector('.add_new_section')
+		var sectionBtn = document.querySelector(".add_new_section");
 
-		sectionBtn.addEventListener('click', () => {
-			var sectionContainer = comp.querySelector('.section_container')
+		sectionBtn.addEventListener("click", () => {
+			var sectionContainer = comp.querySelector(".section_container");
 
 			component("HPAddSection", {}).then((comp2) => {
-				sectionContainer.appendChild(comp2)
+				sectionContainer.appendChild(comp2);
 
-				hotPopUp.setContent(comp)
-			})
-		})
-	})
-	
+				hotPopUp.setContent(comp);
+			});
+		});
+	});
 
-
-	hotPopUp.open()
-})
+	hotPopUp.open();
+});
 
 var hotPopUp = new tingle.modal({
 	stickyFooter: false,

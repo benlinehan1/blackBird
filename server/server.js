@@ -98,7 +98,7 @@ app.get("/api/", (req, res) => {
 });
 
 app.get("/api/relationships", (req, res) => {
-	relationshipsModel.all(req.params.doctor_id, req.params.patient_id).then((dbRes) => {
+	relationshipsModel.all().then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });
@@ -115,8 +115,8 @@ app.post("/api/relationships", (req, res) => {
 		res.json({ message: "added", relationship: dbRes });
 	});
 });
-app.get("/api/relationships/doctor/:patientId", (req, res) => {
-	relationshipsModel.getAllDoctorsOfPatients(req.params.patientId).then((dbRes) => {
+app.get("/api/relationships/doctor/:doctorId", (req, res) => {
+	relationshipsModel.getAllDoctorsOfPatients(req.params.doctorId).then((dbRes) => {
 		res.json({ message: dbRes });
 	});
 });
@@ -207,15 +207,6 @@ app.get("/api/consultations/:id", (req, res) => {
 	});
 });
 
-app.get("/api/search/consultations", (req, res) => {
-	let patient_id = req.query.patient_id;
-	let doctor_id = req.query.doctor_id;
-
-	consultationModel.getConsultationByPatientId(patient_id, doctor_id).then((dbRes) => {
-		res.json({ consultations: dbRes });
-	});
-});
-
 app.get("/api/consultation/:id", (req, res) => {
 	consultationModel.getSingle(req.params.id).then((dbRes) => {
 		res.json({ message: dbRes });
@@ -296,6 +287,29 @@ app.post("/api/email/:email/:doctor_id", (req, res) => {
 		res.json({ message: "Email requested. Please allow 24 hours." });
 	});
 	confirmationModel.confirmationCreate(req.params.doctor_id, confirmation_code);
+});
+
+app.post("/api/email/:email/:doctor_id", (req, res) => {
+	let confirmation_code = confirmationCode();
+	email(req.params.email, confirmation_code).then((response) => {
+		console.log(response);
+		res.json({ message: "Email requested. Please allow 24 hours." });
+	});
+	confirmationModel.confirmationCreate(req.params.doctor_id, confirmation_code);
+});
+
+app.get("/api/email/:code", (req, res) => {
+	confirmationModel
+		.confirmationGetByConfId(req.params.code)
+		.then((res) => {
+			let patient_id = "1";
+			console.log(res);
+
+			return relationshipsModel.create(patient_id, res[0].doctor_id);
+		})
+		.then((dbRes) => {
+			res.json(dbRes);
+		});
 });
 
 app.patch("/api/confirmrelationship/:code", (req, res) => {

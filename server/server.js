@@ -44,20 +44,27 @@ app.get("/", (req, res) => {
 	if (req.oidc.isAuthenticated()) {
 		console.log(req.oidc.user);
 		let userId = req.oidc.user.sub;
-		signUpHelp.isFirstSignUp(userId).then((res) => {
+		signUpHelp.isFirstSignUp(userId).then((response) => {
 			if (res) {
 				authUsersHelp.getMetaData(userId).then((res) => {
-					if (res.role === "patient") {
+					if (response.role === "patient") {
 						patientsModel.patientCreate(req.oidc.user.sub, res.name);
 						res.redirect("/patientview");
-					} else if (res.role === "doctor") {
+					} else if (response.role === "doctor") {
 						doctorsModel.doctorCreate(req.oidc.user.sub, res.name);
-						res.redirect("hpview");
+						res.redirect("/hpview");
 					}
 				});
 			}
 		});
-		res.redirect("/home");
+		authUsersHelp.getMetaData(userId).then((response) => {
+			if (response.role === "patient") {
+				res.redirect("/patientview");
+			} else if (response.role === "doctor") {
+				doctorsModel.doctorCreate(req.oidc.user.sub, res.name);
+				res.redirect("/hpview");
+			}
+		});
 	} else {
 		res.redirect("/login");
 	}

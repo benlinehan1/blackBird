@@ -93,5 +93,18 @@ body {
 }
 
 .comment_post {
+	transition: 0.2s;
+	border: none;
 	height: 40px;
+}
+
+.comment_post:hover {
+	background-color: rgb(219, 219, 219);
+}
+
+textarea {
+	border: none;
+	outline: none;
+	resize: none;
+	background-color: rgb(241, 194, 105);
 }

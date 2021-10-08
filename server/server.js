@@ -206,6 +206,16 @@ app.get("/api/patients/:id", (req, res) => {
 
 // find patient by id ^
 
+app.get("/api/search/consultations", (req, res) => {
+	let patient_id = req.query.patient_id;
+	let doctor_id = req.query.doctor_id;
+
+	consultationModel.getConsultationByPatientId(patient_id, doctor_id).then((dbRes) => {
+		res.json({ consultations: dbRes });
+	});
+});
+
+
 app.get("/api/consultations/:id", (req, res) => {
 	let relationship_id = req.params.id;
 

@@ -5,10 +5,28 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+		<link rel="stylesheet" href="../styles/hpviewLayout.css" />
+		<link rel="stylesheet" href="../styles/coreStyles.css" />
+		<link rel="stylesheet" href="../styles/patientView.css" />
+		<link rel="stylesheet" href="../views/modal/tingle.css" />
 	</head>
 	<body>
-		<div class="sidebar_patient"></div>
-		<div class="consultations_patient"></div>
-		<script type="module" src="/views/scripts/patientview.js"></script>
+		<div class="header">
+			<div class="header_logo">LOGO</div>
+			<div class="header_logout">LOGOUT</div>
+		</div>
+		<div class="main_container">
+			<div class="sidebar_container">
+				<div class="doctor_add">ADD YOUR DOCTOR</div>
+				<div class="sidebar"></div>
+			</div>
+
+			<div class="consultations_holder">
+				<div class="consultations"></div>
+			</div>
+		</div>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script type="module" src="./views/scripts/patientview.js"></script>
+		<script src="./views/modal/tingle.js"></script>
 	</body>
 </html>

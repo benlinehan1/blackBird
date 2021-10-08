@@ -1,12 +1,9 @@
 const { dbQuery } = require("../lib/dbQuery.js");
 const date = require("../lib/dateHelp.js");
-let confirmationCode = () => {
-	return Math.floor(Math.random() * 99999999).toString();
-};
 
-function confirmationCreate(doctorId) {
+function confirmationCreate(doctorId, confirmation_code) {
 	let sql = "insert into confirmation (doctor_id, date, confirmation_code) values ($1,$2,$3);";
-	return dbQuery(sql, [doctorId, date.newISO(), confirmationCode()])
+	return dbQuery(sql, [doctorId, date.newISO(), confirmation_code])
 		.then((res) => {
 			console.log(res.rows);
 			return res.rows;

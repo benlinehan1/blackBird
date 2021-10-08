@@ -1,11 +1,11 @@
 const { dbQuery } = require("../lib/dbQuery.js");
 const { deleteSingle } = require("./consultation_models.js");
 
-function all() {
+function all(doctor_id, patient_id) {
 	let sql = `
-	select * from relationships;`;
+	select * from relationships WHERE doctor_id = $1 AND patient_id = $2;`;
 
-	return dbQuery(sql).then((dbRes) => {
+	return dbQuery(sql, [doctor_id, patient_id]).then((dbRes) => {
 		console.log(dbRes.rows);
 		return dbRes.rows;
 	});
@@ -29,13 +29,15 @@ function pending(id) {
 }
 
 function confirm(id) {
-	let pending = pending(id);
+	id = id.toString();
 
-	if (pending === false) {
-		console.log("in progress");
-	} else {
-		return (sql = `UPDATE relationships SET pending = '${pending}'`);
-	}
+	console.log(`This is the` + id);
+	let sql = `UPDATE relationships SET pending = true WHERE doctor_id = $1 returning *`;
+
+	return dbQuery(sql, [id]).then((dbRes) => {
+		console.log(dbRes);
+		return dbRes.rows[0];
+	});
 }
 
 function remove(id) {
@@ -49,32 +51,50 @@ function remove(id) {
 			console.log(err);
 		});
 }
+function getAllDoctorsOfPatients(patient_id) {
+	let sql = `select doctors.* from relationships join doctors on relationships.doctor_id = doctors.id where (patient_id = $1 and pending = false)`;
+
+	return dbQuery(sql, [patient_id])
+		.then((dbRes) => {
+			return dbRes.rows;
+		})
+		.catch((res) => {
+			console.log(res);
+		});
+}
+
+function getAllPatientsOfDoctors(patient_id) {
+	let sql = `select patients.* from relationships join patients on relationships.patient_id = patients.id where (patient_id = $1 and pending = false)`;
+
+	return dbQuery(sql, [patient_id]).then((dbRes) => {
+		return dbRes.rows;
+	});
+}
 
 function getStatus(id) {
 	let sql = `SELECT pending from relationships where id = $1`;
 }
 
-function getAllDoctorsOfPatients(doctor_id) {
-	let sql = `select doctors.* from relationships where doctor_id = $1 and pending = false join doctors on relationships.doctor_id = doctors.id`;
-
-	return dbQuery(sql, [doctor_id]).then((dbRes) => {
-		return dbRes.rows;
-	});
-}
-
-function getAllPatientsOfDoctors(patient_id) {
-	let sql = `select patients.* from relationships where patient_id = $1 and pending = false join patients on relationships.patient_id = patients.id`;
-
-	return dbQuery(sql, [patient_id]).then((dbRes) => {
-		return dbRes.rows;
-	});
-}
-
 function getAllPendingPatients(doctor_id) {
-	let sql = `select patients.* from relationships where patient_id = $1 and pending = true join patients on relationships.patient_id = patients.id`;
-	return dbQuery(sql, [patient_id]).then((dbRes) => {
-		return dbRes.rows;
-	});
+	let sql = `select patients.* from relationships join patients on relationships.patient_id = patients.id where (doctor_id = $1 and pending = true)`;
+	return dbQuery(sql, [doctor_id])
+		.then((dbRes) => {
+			return dbRes.rows;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+}
+
+function getAllConfirmedPatients(doctor_id) {
+	let sql = `select patients.* from relationships join patients on relationships.patient_id = patients.id where (doctor_id = $1 and pending = false)`;
+	return dbQuery(sql, [doctor_id])
+		.then((dbRes) => {
+			return dbRes.rows;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 }
 
 module.exports = {
@@ -86,4 +106,5 @@ module.exports = {
 	getAllPendingPatients,
 	getAllPatientsOfDoctors,
 	getAllDoctorsOfPatients,
+	getAllConfirmedPatients,
 };

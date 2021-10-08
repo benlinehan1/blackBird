@@ -1,1 +1,5 @@
-<input class="title" type="text" /> <input class="section" type="textarea" />
+<div class="section_container">
+	kgfmjdslkojvgfdsfkojgjhdfoi
+	<input class="title" type="text" />
+	<textarea class="section" type="text"></textarea>
+</div>

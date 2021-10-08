@@ -1,4 +1,7 @@
+psql
+drop database blackbird;
 create database blackbird;
+\c blackbird;
 
 create table doctors (
   id text,
@@ -6,17 +9,17 @@ create table doctors (
   type text,
   credentials int
 );
-
 create table relationships (
   id serial primary key,
   patient_id text,
-  doctor_id text
+  doctor_id text,
+  pending boolean default 'true'
 );
 create table patients (
   id text,
   full_name text
 );
-//added section id
+
 create table comment (
   id serial primary key,
   patient_id int,
@@ -36,7 +39,6 @@ create table section (
   title text,
   content text
 );
-
 create table confirmation (
   id serial primary key,
   doctor_id int,

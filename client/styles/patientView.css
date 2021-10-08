@@ -1,0 +1,15 @@
+.doctor_selector {
+	padding-left: 20px;
+	transition: 0.2s;
+}
+
+.doctor_selector:hover {
+	cursor: pointer;
+	position: relative;
+	box-shadow: -1px 10px 15px 0px rgba(0, 0, 0, 0.11);
+}
+
+.section_content_holder {
+	display: flex;
+	justify-content: space-evenly;
+}
